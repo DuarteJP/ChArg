@@ -28,10 +28,10 @@ SECRET_KEY = '#7(^)qnh55*ac)6*+4=)&&v13vv@yemdbbkt!oiwkzkky$^o9f'
 
 # Application definition
 # creado recientemente para login
-AUTH_USER_MODEL = 'usuarios.Usuario'
-LOGIN_REDIRECT_URL = reverse_lazy('home')
-LOGOUT_REDIRECT_URL = reverse_lazy('login')
-LOGIN_URL = reverse_lazy('login')
+#AUTH_USER_MODEL = 'usuarios.Usuario'
+#LOGIN_REDIRECT_URL = reverse_lazy('home')
+#LOGOUT_REDIRECT_URL = reverse_lazy('login')
+#LOGIN_URL = reverse_lazy('login')
 
 
 
