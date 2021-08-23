@@ -1,0 +1,7 @@
+/* Banner */
+
+	#banner {
+		background: url("../../img/banner.jpg");
+		background-size: cover;
+		-ms-behavior: url("css/ie/backgroundsize.min.htc");
+	}
