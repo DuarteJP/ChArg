@@ -4,7 +4,7 @@ from apps.core.models import TimeModels
 
 from apps.categorias.models import Categoria
 
-class Partida(TimeModels):
+class Pregunta(TimeModels):
 	categoria = models.ForeignKey(Categoria, on_delete = models.SET_NULL , null = True)
 	descripcion = models.CharField(max_length = 50)
 	nivel = models.CharField(max_length = 10)
