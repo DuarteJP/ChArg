@@ -1,0 +1,13 @@
+
+
+{% block contenido %}
+
+<form class="form" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+
+
+    <button type="submit" id="submit" name="submit" >Registrarse</button>
+</form>
+
+{% endblock %}

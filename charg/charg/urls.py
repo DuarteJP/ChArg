@@ -21,6 +21,9 @@ from .import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home, name = 'home'),
+    #registro
+    path('registro/', views.Registro, name = 'registroUsuario'),
+    
 
     path('',auth.LoginView.as_view(template_name='usuarios/login.html'), name='login'),
     path('logout/',auth.LogoutView.as_view(), name='logout'),
