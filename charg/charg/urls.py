@@ -22,6 +22,7 @@ from apps.usuarios.views import listar_usuarios,crear_usuario,eliminar_usuario,m
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home, name = 'home'),
+    path('', views.usuarioCreado, name = 'usuarioCreado')
     #registro
     path('registro/', views.Registro, name = 'registroUsuario'),
     

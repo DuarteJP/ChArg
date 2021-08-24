@@ -10,8 +10,10 @@ def Registro(request, ):
 	if request.method == 'POST':
 		form = SignUpForm(request.POST)
 		if form.is_valid():
+			form.save()
 			username = form.cleaned_data['username']
 			messages.success(request, f'Usuario {username} creado')
+			return render(request, 'usuarioCreado.html')
 
 	else:
 		form = SignUpForm()
@@ -19,4 +21,5 @@ def Registro(request, ):
 	return render(request, 'registroUsuario.html', context)
 	
 		
-
+def usuarioCreado(request, ):
+	return render(request, 'usuarioCreado.html')
