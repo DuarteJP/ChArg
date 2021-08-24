@@ -3,7 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<title>
-		
+		                {% if user.is_authenticated %}
+                            <span>{{user.username}}</span>
+                            <a href="{% url 'logout' %}">LOGOUT</a>
+                        {% else %}
+                            <a href="{% url 'login' %}">LOGIN</a>
+                        {% endif %} 
 	</title>
 </head>
 <body>

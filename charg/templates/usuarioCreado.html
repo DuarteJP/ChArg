@@ -25,17 +25,17 @@
 			</header>
 			<section id="banner">
 				<h2>ch.ar logo</h2>
-				<p>Usuario creado exitosamente. Bienvenido (USUARIO) </p>
+				{% if user.is_authenticated %}
+				<p>Usuario creado exitosamente. Bienvenido {{user.username}} </p>
+				         <a href="{% url 'logout' %}"class="button big">Cerrar sesión</a>
+ 				 {% else %}
 				<ul class="actions">
 					<li>
-						<a href="#" class="button big">Iniciar sesión</a>
+						<a href="{% url 'login' %}" class="button big">Iniciar sesión</a>
 					</li>
 				</ul>
-				<ul class="actions">
-					<li>
-						<a href="{% url 'registroUsuario' %}" class="button big">Registrarme</a>
-					</li>
-				</ul>
+				{% endif %}
+
 			</section>
 	</body>
 </html>
