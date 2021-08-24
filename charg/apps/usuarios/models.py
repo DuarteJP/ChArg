@@ -11,8 +11,8 @@ class Usuario(AbstractUser):
     #email = models.CharField()
     
 
-    class Meta:
-        proxy = True
+#    class Meta:
+ #       proxy = True
 
     def __str__(self):
         return self.username
