@@ -11,8 +11,13 @@ class Usuario(AbstractUser):
     #email = models.CharField()
     
 
+<<<<<<< Updated upstream
 #    class Meta:
  #       proxy = True
+=======
+    #class Meta:
+    #    proxy = True
+>>>>>>> Stashed changes
 
     def __str__(self):
         return self.username
