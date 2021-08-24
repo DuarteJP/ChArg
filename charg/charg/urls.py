@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth
 from .import views
+from apps.usuarios.views import listar_usuarios,crear_usuario,eliminar_usuario,modificar_usuario,ver_usuario
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,5 +27,13 @@ urlpatterns = [
     path('logout/',auth.LogoutView.as_view(), name='logout'),
 
     #path direccion a las app
-    #path('productos/', include('apps.productos.urls'))    
+    #path('productos/', include('apps.productos.urls'))  
+    
+    #usuarios
+    path('usuarios/listado', listar_usuarios, name='listar_usuarios'),
+    path('usuarios/crear', crear_usuario, name='crear_usuario'),
+    path('usuarios/ver/<int:id>', ver_usuario, name='ver_usuario'),
+    path('usuarios/modificar/<int:id>', modificar_usuario, name='modificar_usuario'),
+    path('usuarios/eliminar/<int:id>', eliminar_usuario, name='eliminar_usuario')
+    
 ]
