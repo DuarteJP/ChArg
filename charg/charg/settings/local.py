@@ -8,7 +8,7 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'BDCHARG',
+        'NAME': 'FINAL',
         'Trusted_Connection':'yes',
         'HOST':'localhost\\SQLEXPRESS',
         'OPTIONS':{
