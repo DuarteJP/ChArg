@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from django.urls import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,14 +24,6 @@ SECRET_KEY = '#7(^)qnh55*ac)6*+4=)&&v13vv@yemdbbkt!oiwkzkky$^o9f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-
-# Application definition
-# creado recientemente para login
-#AUTH_USER_MODEL = 'auth.User'
-AUTH_USER_MODEL = 'usuarios.Usuario'
-#LOGIN_REDIRECT_URL = reverse_lazy('home')
-#LOGOUT_REDIRECT_URL = reverse_lazy('login')
-#LOGIN_URL = reverse_lazy('login')
 
 
 
@@ -129,3 +120,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
         os.path.join(os.path.dirname(BASE_DIR),'static'),
     )
+
+LOGIN_URL = "usuarios:login"
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
