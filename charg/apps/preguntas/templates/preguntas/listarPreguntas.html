@@ -5,7 +5,11 @@
 
 {% block contenido %}
 
-<h1>Listado de Preguntas</h1>
+<div class="row">
+    <h1>Listado de Preguntas</h1>
+    <a class="btn btn-primary" href="">Agregar</a>
+
+</div>
 
 <table class="table">
     <thead class="thead-dark">
@@ -37,6 +41,13 @@
         <!--<a class="btn btn-primary" href="{% url 'preguntas:listar' %}">Volver a Preguntas</a>-->
     </div>
 </div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Agregar nuevas preguntas
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="alta" role="dialog"></div>
 
 
 {% endblock %}
