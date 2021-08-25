@@ -31,5 +31,11 @@ urlpatterns = [
     # path('usuarios/ver/<int:id>', ver_usuario, name='ver_usuario'),
     # path('usuarios/modificar/<int:id>', modificar_usuario, name='modificar_usuario'),
     # path('usuarios/eliminar/<int:id>', eliminar_usuario, name='eliminar_usuario')
+
+   #pregunta
+    path('preguntas/', include('apps.preguntas.urls')),
+
+    #respuestas
+    path('respuestas/', include('apps.respuestas.urls'))
     
 ]

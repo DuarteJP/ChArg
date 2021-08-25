@@ -9,5 +9,8 @@ class Respuesta(TimeModels):
 	descripcion = models.CharField(max_length = 50)
 	tipo = models.CharField(max_length = 10)
 	dificultad = models.IntegerField(default = 1)
+	
+	def __str__(self):
+		return self.descripcion
 
 

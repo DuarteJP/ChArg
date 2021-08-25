@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block contenido %}
+
+<h1>Listado de Preguntas</h1>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Pregunta</th>
+            <th>Categoria</th>
+            <th>Accion</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if preguntas %}
+        {% for p in preguntas %}
+        <tr>
+            <td scope="row">{{p.descripcion}}</td>
+            <td scope="row">{{p.categoria.nombre}}</td>
+            <td>
+                <a href="{% url 'preguntas:asignar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Ver detalle">
+                    <i class="fas fa-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        
+    </tbody>
+</table>
+<div class="col">
+    <div class="row">
+        <!--<a class="btn btn-primary" href="{% url 'preguntas:listar' %}">Volver a Preguntas</a>-->
+    </div>
+</div>
+
+
+{% endblock %}
