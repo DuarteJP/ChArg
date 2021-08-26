@@ -8,9 +8,9 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'FINAL',
+        'NAME': 'BDCHARG',
         'Trusted_Connection':'yes',
-        'HOST':'localhost\\SQLEXPRESS',
+        'HOST':'localhost\SQLEXPRESS',
         'OPTIONS':{
             'driver':'SQL Server Native Client 11.0',
         }

@@ -3,5 +3,5 @@ __pycache__/
 *.py[cod]
 *.pyc
 
-charg/charg/settings/local.py
+.charg/charg/settings/local.py
 db.sqlite3

@@ -4,11 +4,12 @@
 {% endblock %}
 
 {% block contenido %}
-
 <div class="row">
     <h1>Listado de Preguntas</h1>
-    <a class="btn btn-primary" href="">Agregar</a>
-
+    <div class="col-4">
+    <a class="btn btn-warning"  href="{% url 'preguntas:crear'%}">
+    <span class="fa fa-plus-circle">Agregar</span> 
+    </a>
 </div>
 
 <table class="table">
@@ -16,7 +17,7 @@
         <tr>
             <th>Pregunta</th>
             <th>Categoria</th>
-            <th>Accion</th>
+            <th>Acción</th>
         </tr>
     </thead>
     <tbody>
@@ -36,18 +37,14 @@
         
     </tbody>
 </table>
-<div class="col">
-    <div class="row">
-        <!--<a class="btn btn-primary" href="{% url 'preguntas:listar' %}">Volver a Preguntas</a>-->
+<div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <button class="btn btn-info" href="#" ><b>
+        <i class="fas fa-undo-alt">&nbsp;Volver </i>
+        </b></button>
     </div>
+    <div class="col"></div>
 </div>
-
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-    Agregar nuevas preguntas
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="alta" role="dialog"></div>
-
 
 {% endblock %}

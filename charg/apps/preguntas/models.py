@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms.models import ModelForm
 from apps.core.models import TimeModels
 from apps.categorias.models import Categoria
 
@@ -8,6 +9,4 @@ class Pregunta(TimeModels):
 
 	def __str__(self):
 		return self.descripcion
-
-	
 
