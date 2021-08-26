@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 
 from django.urls import reverse_lazy
-from bootstrap_modal_forms.generic import BSModalCreateView
+#from bootstrap_modal_forms.generic import BSModalCreateView
 
 
 
