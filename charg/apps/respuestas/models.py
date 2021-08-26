@@ -4,7 +4,7 @@ from apps.preguntas.models import Pregunta
 
 class Respuesta(TimeModels):
 	pregunta = models.ForeignKey(Pregunta, related_name = 'mi_pregunta', on_delete = models.CASCADE)
-	descripcion = models.CharField(max_length = 50)
+	descripcion = models.CharField(max_length = 255)
 	correcta = models.BooleanField(default = False)
 	mostrada = models.BooleanField(default = False)
 
