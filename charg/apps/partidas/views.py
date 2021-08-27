@@ -11,6 +11,7 @@ from .models import Partida
 from apps.categorias.models import Categoria
 from django.contrib.auth.models import User
 from apps.preguntas.models import Pregunta
+from apps.respuestas.models import Respuesta
 import random
 
 # Create your views here.
@@ -18,7 +19,7 @@ import random
 @login_required
 def ranking(request):
 	context ={}
-	rank = Partida.objects.order_by('-puntaje')
+	rank = Partida.objects.order_by('-puntaje')[:50]
 	context['ranking'] = rank
 	return render(request, 'partidas/ranking.html', context)
 
@@ -33,10 +34,7 @@ def misPartidas(request, pk):
 def seleccionarCategoria(request):
 	context ={}
 	#Se recorren todas las preguntas para asegurarse que ninguna tenga Mostrada=True
-	# preguntas = Pregunta.objects.filter(mostrada == True)
-	# for pregunta in preguntas:
-	# 	pregunta.mostrada = False
-	# 	pregunta.save()
+	preguntas = Pregunta.objects.filter(mostrada=True).update(mostrada=False)
 	categoria = Categoria.objects.all()
 	context['categorias'] = categoria
 	return render(request, 'partidas/seleccionarCategoria.html', context)
