@@ -16,6 +16,26 @@ def ListarRespuestas(request):
     context['respuestas'] = listado
     return render(request, 'respuestas/listadoRespuestas.html', context)
 
+def Agregar(request):
+    form = Form_respuesta(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            formulario = form.save()
+            #messages.success(request, 'Pregunta agregada')
+            return redirect('respuestas:listar')
+    context = {
+        "form": form
+    }
+    return render(request, 'respuestas/agregar.html', context)
+
+
+
+
+
+
+
+
+'''
 class CreateViewRespuesta(CreateView):
     template_name = 'respuestas/agregar.html'
     form_class = Form_respuesta
@@ -34,4 +54,4 @@ class CreateViewRespuesta(CreateView):
             return redirect('respuestas:listar')
         else:
             form=self.Form_respuesta()
-            return render(request, template_name, self.get_context_data())
+            return render(request, template_name, self.get_context_data())'''
