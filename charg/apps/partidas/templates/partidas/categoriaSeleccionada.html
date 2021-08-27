@@ -13,6 +13,7 @@
 	<div class="col s12 m8 offset-m2">
 		<h4 class="light">Categoría seleccionada: {{ categoria.nombre }}</h4>
 	</div>
+	{% if pregunta %}
 	<div class="col s12 m8 offset-m2">
 		<h4 class="light">{{ pregunta.descripcion }}</h4>
 	</div>
@@ -23,6 +24,10 @@
 	{% else %}
 			<p>No hay respuestas para esta pregunta</p>
 	{% endif %}
+	{% else %}
+			<p>No hay preguntas para esta categoria</p>
+	{% endif %}
+	
 </div>
 <div class="row center">
 
