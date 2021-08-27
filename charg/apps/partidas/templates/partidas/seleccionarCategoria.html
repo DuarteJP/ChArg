@@ -17,7 +17,7 @@
 <div class="row center">
 	{% if categorias %}
 		{% for c in categorias %}
-			<a href="{% url 'partidas:categoriaSeleccionada' c.id %}" class="btn-large waves-effect waves-light">{{c.nombre}}
+			<a href="{% url 'partidas:mostrarPregunta' c.id %}" class="btn-large waves-effect waves-light">{{c.nombre}}
 			</a>
 		{% endfor %}
 	{% endif %}
