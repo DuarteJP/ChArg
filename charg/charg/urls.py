@@ -33,13 +33,13 @@ urlpatterns = [
     # path('usuarios/modificar/<int:id>', modificar_usuario, name='modificar_usuario'),
     # path('usuarios/eliminar/<int:id>', eliminar_usuario, name='eliminar_usuario')
 
-<<<<<<< Updated upstream
+
    #apps
     path('preguntas/', include('apps.preguntas.urls')),
     path('respuestas/', include('apps.respuestas.urls')),
     path('categorias/', include('apps.categorias.urls')),
     
-=======
+
     #pregunta
     path('preguntas/', include('apps.preguntas.urls')),
 
@@ -51,5 +51,5 @@ urlpatterns = [
 
     #categorias
     #path('categorias/', include('apps.categorias.urls'))    
->>>>>>> Stashed changes
+
 ]
