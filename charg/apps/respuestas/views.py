@@ -16,6 +16,12 @@ def ListarRespuestas(request):
     context['respuestas'] = listado
     return render(request, 'respuestas/listadoRespuestas.html', context)
 
+# def respuestaPregunta(request):
+#     context = {}
+#     listado = Pregunta.objects.all() # ORM de django
+#     context['pregunta'] = listado
+#     return render(request, 'respuestas/listadoRespuestas.html', context)
+
 def Agregar(request):
     form = Form_respuesta(request.POST or None)
     if request.method == "POST":

@@ -4,6 +4,12 @@ from django.http import request
 from .models import Respuesta
 
 class Form_respuesta(ModelForm):
+    
     class Meta:
         model = Respuesta
         fields = ['descripcion', 'pregunta', 'correcta']
+
+
+
+
+

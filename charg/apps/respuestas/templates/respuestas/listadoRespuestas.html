@@ -15,8 +15,8 @@
 <table class="table">
     <thead class="thead-dark">
         <tr>
-            <th>Descripción</th>
-            <th>Pregunta</th>
+            <th>ID de pregunta</th>
+            <th>Respuesta</th>
             <th>V o F</th>
             <th>Acción</th>
         </tr>
@@ -25,13 +25,13 @@
         {% if respuestas %}
         {% for r in respuestas %}
         <tr>
+            <td scope="row">{{r.pregunta_id}}</td>
             <td scope="row">{{r.descripcion}}</td>
-            <td scope="row">{{r.pregunta.descripcion}}</td>
             <td scope="row">{{r.correcta}}</td>
             <td>
-               <!-- <a href="{% url 'preguntas:asignar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Modificar">
+               <a href="{% url 'preguntas:asignar' r.pregunta_id "  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Modificar">
                     <i class="fas fa-eye"></i>
-                </a>-->
+                </a>
             </td>
         </tr>
         {% endfor %}
