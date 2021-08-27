@@ -7,7 +7,7 @@
             <ul class="right hide-on-med-and-down">
                 {% if request.user.is_authenticated %}
                 <li><a href="{% url 'home' %}">INICIO</a></li>
-                <li><a href="{% url 'partidas:ranking' %}">ESTADISTICAS</a></li>
+                <li><a href="{% url 'partidas:ranking' %}">RANKING</a></li>
                 <li><a href="{% url 'usuarios:perfil' request.user.id %}">PERFIL</a></li>
                 <li><a href="{% url 'usuarios:logout' %}">SALIR</a></li>
                 {% else %}
@@ -20,8 +20,9 @@
     <!-- menu hamburguesa en pantalla chica -->
     <ul class="sidenav" id="mobile-demo">
         {% if request.user.is_authenticated %}
-        <li><a href="#">ESTADÍSTICAS</a></li>
-        <li><a href="">PERFIL</a></li>
+        <li><a href="{% url 'home' %}">INICIO</a></li>
+        <li><a href="{% url 'partidas:ranking' %}">RANKING</a></li>
+        <li><a href="{% url 'usuarios:perfil' request.user.id %}">PERFIL</a></li>
         <li><a href="{% url 'usuarios:logout' %}">SALIR</a></li>
         {% else %}
         <li><a href="{% url 'usuarios:login' %}">INGRESAR</a></li>

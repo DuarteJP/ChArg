@@ -6,16 +6,32 @@
 
 {% block contenido %}
     <div class="card-panel">
-        <div class="row">
-            Usuario: {{usuario.username}}
-        </div>
         {% if request.user == usuario %}
+        <div class="row">
+            Mi usuario: {{usuario.username}}
+        </div>
+        
             <div class="row">
                 <a href="{% url 'usuarios:edit_profile' %}" class="btn-floating btn-large waves-effect waves-light red">
                     <i class="material-icons">create</i>
                 </a>
+                <a href="{% url 'partidas:misPartidas' request.user.id %}"class="btn-floating btn-large waves-effect waves-light red">
+                    <i class="fa fa-search"></i>
+                </a> 
+            </div>
+        {% else %}
+            <div>
+                <div class="row">
+                <a href="{% url 'usuarios:perfil' request.user.id %}" class="btn-floating btn-large waves-effect waves-light red">
+                    <i class="fas fa-undo-alt"></i>
+                </a>
+                <div class="col s12 m8 offset-m2">
+                    <h4 class="light">No tienes los permisos para acceder a este perfil</h4>
+                </div>
+
             </div>
         {% endif %}
+
     </div>
 
 {% endblock %}
