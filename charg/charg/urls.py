@@ -32,7 +32,7 @@ urlpatterns = [
     # path('usuarios/modificar/<int:id>', modificar_usuario, name='modificar_usuario'),
     # path('usuarios/eliminar/<int:id>', eliminar_usuario, name='eliminar_usuario')
 
-   #pregunta
+   #preguntas
     path('preguntas/', include('apps.preguntas.urls')),
 
     #respuestas

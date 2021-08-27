@@ -4,6 +4,52 @@
 {% endblock %}
 
 {% block contenido %}
+<div class="row">
+    <h1>Listado de Respuestas</h1>
+    <div class="col-4">
+    <a class="btn btn-warning"  href="{% url 'respuestas:crear'%}">
+    <span class="fa fa-plus-circle">&nbsp;Agregar</span> 
+    </a>
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>Descripción</th>
+            <th>Pregunta</th>
+            <th>V o F</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if respuestas %}
+        {% for r in respuestas %}
+        <tr>
+            <td scope="row">{{r.descripcion}}</td>
+            <td scope="row">{{r.pregunta.descripcion}}</td>
+            <td scope="row">{{r.correcta}}</td>
+            <td>
+               <!-- <a href="{% url 'preguntas:asignar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Modificar">
+                    <i class="fas fa-eye"></i>
+                </a>-->
+            </td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        
+    </tbody>
+</table>
+<hr>
+<br>
+<div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <a class="btn btn-info" href="#" ><b>
+        <i class="fas fa-undo-alt">&nbsp;Volver </i>
+        </b></a>
+    </div>
+    <div class="col"></div>
+</div>
 
 
 {% endblock %}
