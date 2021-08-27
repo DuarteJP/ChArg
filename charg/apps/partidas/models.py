@@ -9,4 +9,4 @@ class Partida(TimeModels):
 	finalizada = models.BooleanField(default = False)
 
 	def __str__(self):
-		return self.objects.get(pk)
+		return str(self.puntaje)

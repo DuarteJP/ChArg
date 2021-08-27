@@ -5,12 +5,13 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
+<<<<<<< Updated upstream
+=======
+from django.http.response import HttpResponse
+from django.urls import reverse_lazy
+>>>>>>> Stashed changes
 #from bootstrap_modal_forms.generic import BSModalCreateView
-
-
-
 from .models import Pregunta
-from .import models
 from .forms import Form_pregunta
 
 
@@ -34,10 +35,9 @@ def AsignarRespuestas(request, pk):
 
 class CreateViewPregunta(CreateView):
     template_name = 'preguntas/agregar.html'
-    form_class = Form_pregunta
+    form_pregunta = Form_pregunta()
     success_message = 'Success: Creado correctamente.'
     success_url = reverse_lazy('preguntas:listar')
-
 
 #class CreateViewPregunta(CreateView):
  #   model = Pregunta
@@ -51,13 +51,15 @@ class CreateViewPregunta(CreateView):
 
     def post(self, *args, **kwargs):
         template_name = 'preguntas/agregar.html'
-        form = self.form_pregunta(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('preguntas:listar')
-        else:
-            form=self.form_pregunta()
-            return render(request, template_name, self.get_context_data())
+        #form = self.form_pregunta(request.POST)
+        if request.method == "POST":
+            form = form_pregunta(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('preguntas:listar')
+            else:
+                form=self.form_pregunta()
+                return render(request, template_name, self.get_context_data())
 
 
 
