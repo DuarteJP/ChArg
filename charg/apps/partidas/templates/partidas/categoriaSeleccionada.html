@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+- Jugando
+{% endblock %}
+
+{% block contenido %}
+
+<div class="row center">
+	<div class="col s12 m10 offset-m1">
+		<h1 class="header">Charg</h1>
+	</div>
+	<div class="col s12 m8 offset-m2">
+		<h4 class="light">Categoría seleccionada: {{ categoria.nombre }}</h4>
+	</div>
+	<div class="col s12 m8 offset-m2">
+		<h4 class="light">{{ pregunta.descripcion }}</h4>
+	</div>
+	{% if respuesta %}
+		{% for r in respuesta %}
+			<a href="#" class="btn-large waves-effect waves-light">{{ r.descripcion }}</a>
+		{% endfor %}
+	{% else %}
+			<p>No hay respuestas para esta pregunta</p>
+	{% endif %}
+</div>
+<div class="row center">
+
+
+
+
+{% endblock %}
