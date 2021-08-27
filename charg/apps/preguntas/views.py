@@ -5,11 +5,8 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
-<<<<<<< Updated upstream
-=======
 from django.http.response import HttpResponse
 from django.urls import reverse_lazy
->>>>>>> Stashed changes
 #from bootstrap_modal_forms.generic import BSModalCreateView
 from .models import Pregunta
 from .forms import Form_pregunta
