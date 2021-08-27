@@ -33,24 +33,40 @@ def AsignarRespuestas(request, pk):
     context['pregunta'] = objeto
     return render(request, 'respuestas/listadoRespuestas.html', context)
 
-class CreateViewPregunta(CreateView):
-    template_name = 'preguntas/agregar.html'
-    form_pregunta = Form_pregunta()
-    success_message = 'Success: Creado correctamente.'
-    success_url = reverse_lazy('preguntas:listar')
+# class CreateViewPregunta(CreateView):
+#     template_name = 'preguntas/agregar.html'
+#     form_pregunta = Form_pregunta()
+#     success_message = 'Success: Creado correctamente.'
+#     success_url = reverse_lazy('preguntas:listar')
 
-    def post(self, *args, **kwargs):
-        #form_pregunta = Form_pregunta()
-        template_name = 'preguntas/agregar.html'
-        #form = self.form_pregunta(request.POST)
-        if request.method == "POST":
-            form = form_pregunta(request.POST)
-            if form.is_valid():
-                form.save()
-                return redirect('preguntas:listar')
-            else:
-                form=self.form_pregunta()
-                return render(request, template_name, self.get_context_data())
+#     def post(self, *args, **kwargs):
+#         #form_pregunta = Form_pregunta()
+#         template_name = 'preguntas/agregar.html'
+#         #form = self.form_pregunta(request.POST)
+#         if request.method == "POST":
+#             form = form_pregunta(request.POST)
+#             if form.is_valid():
+#                 form.save()
+#                 return redirect('preguntas:listar')
+#             else:
+#                 form=self.form_pregunta()
+#                 return render(request, template_name, self.get_context_data())
+
+def Agregar(request):
+    form = Form_pregunta(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            formulario = form.save()
+            #messages.success(request, 'Pregunta agregada')
+            return redirect('preguntas:listar')
+    context = {
+        "form": form
+    }
+    return render(request, 'preguntas/agregar.html', context)
+
+
+            
+
 
 #def filtrarPregunta(request):
  #   context = {}
