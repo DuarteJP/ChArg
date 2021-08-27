@@ -5,29 +5,32 @@
 
 {% block contenido %}
 <div class="row">
-    <h1>Listado de Preguntas</h1>
+    <h1>Listado de Categorias</h1>
     <div class="col-4">
-    <a class="btn btn-warning"  href="{% url 'preguntas:crear'%}">
-    <span class="fa fa-plus-circle">Agregar</span> 
+    <a class="btn btn-warning"  href="{% url 'categorias:crear'%}">
+    <span class="fa fa-plus-circle">&nbsp;Agregar</span> 
     </a>
 </div>
 
 <table class="table">
     <thead class="thead-dark">
         <tr>
-            <th>Pregunta</th>
             <th>Categoria</th>
+            <th>Descripción</th>
+            <th>Icono</th>
+            <th>Color</th>
             <th>Acción</th>
         </tr>
     </thead>
     <tbody>
-        {% if preguntas %}
-        {% for p in preguntas %}
+        {% if categorias %}
+        {% for c in categorias %}
         <tr>
-            <td scope="row">{{p.descripcion}}</td>
-            <td scope="row">{{p.categoria.nombre}}</td>
+            <td scope="row">{{c.nombre}}</td>
+            <td scope="row">{{c.descripcion}}</td>
+            <td scope="row">{{c.icono}}</td>
+            <td scope="row">{{c.color}}</td>
             <td>
-                <!--{% url 'preguntas:asignar' p.id %}-->
                 <a href="#"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Ver detalle">
                     <i class="fas fa-eye"></i>
                 </a>
@@ -38,14 +41,16 @@
         
     </tbody>
 </table>
+<hr>
+<br>
 <div class="row">
-    <div class="col"></div>
-    <div class="col">
-      <button class="btn btn-info" href="#" ><b>
+    <div class="col-5"></div>
+    <div class="col-2">
+      <a href = "#" class="btn btn-info" href="#" ><b>
         <i class="fas fa-undo-alt">&nbsp;Volver </i>
-        </b></button>
+        </b></a>
     </div>
-    <div class="col"></div>
+    <div class="col-5"></div>
 </div>
 
 {% endblock %}

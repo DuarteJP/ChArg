@@ -21,6 +21,7 @@ from .import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Home, name = 'home'),
+    #path('tablero/', views.Tablero, name = 'tablero'),
     #path direccion a las app
 
     path("usuarios/", include("apps.usuarios.urls")),
@@ -32,10 +33,9 @@ urlpatterns = [
     # path('usuarios/modificar/<int:id>', modificar_usuario, name='modificar_usuario'),
     # path('usuarios/eliminar/<int:id>', eliminar_usuario, name='eliminar_usuario')
 
-   #preguntas
+   #apps
     path('preguntas/', include('apps.preguntas.urls')),
-
-    #respuestas
-    path('respuestas/', include('apps.respuestas.urls'))
+    path('respuestas/', include('apps.respuestas.urls')),
+    path('categorias/', include('apps.categorias.urls')),
     
 ]

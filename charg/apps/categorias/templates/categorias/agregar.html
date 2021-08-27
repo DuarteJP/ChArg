@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<div class="container-fluid">
+        <form method="post" action="">
+          {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title">ABM Categoría</h5>
+        </div>
+        <div class="modal-body">
+            {{form.as_p}}
+          </div>
+      <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Guardar</button>
+          <a type="button" href="{% url 'categorias:listar' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+      </form>
+    </div>
+{% endblock %}
