@@ -34,11 +34,6 @@ urlpatterns = [
     # path('usuarios/eliminar/<int:id>', eliminar_usuario, name='eliminar_usuario')
 
 
-   #apps
-    path('preguntas/', include('apps.preguntas.urls')),
-    path('respuestas/', include('apps.respuestas.urls')),
-    path('categorias/', include('apps.categorias.urls')),
-    
 
     #pregunta
     path('preguntas/', include('apps.preguntas.urls')),
