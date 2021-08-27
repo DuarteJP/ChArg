@@ -1,5 +1,7 @@
+from io import IOBase
 from django import forms
-from django.http import request
+from django.core.checks import messages
+from django.http import request, HttpResponse
 from .forms import Form_pregunta
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
@@ -10,6 +12,7 @@ from django.urls import reverse_lazy
 #from bootstrap_modal_forms.generic import BSModalCreateView
 from .models import Pregunta
 from .forms import Form_pregunta
+
 
 
 # Create your views here.
@@ -36,17 +39,8 @@ class CreateViewPregunta(CreateView):
     success_message = 'Success: Creado correctamente.'
     success_url = reverse_lazy('preguntas:listar')
 
-#class CreateViewPregunta(CreateView):
- #   model = Pregunta
-  #  Form_pregunta = forms
-   # template_name = 'preguntas/listarPreguntas.html'
-    #success_url = reverse_lazy('preguntas:listar')
-
-    def get(self, request, *args, **kwargs):
-        context = {'form': Form_pregunta()}
-        return render(request, 'preguntas/agregar.html', context)
-
     def post(self, *args, **kwargs):
+        #form_pregunta = Form_pregunta()
         template_name = 'preguntas/agregar.html'
         #form = self.form_pregunta(request.POST)
         if request.method == "POST":
@@ -58,6 +52,22 @@ class CreateViewPregunta(CreateView):
                 form=self.form_pregunta()
                 return render(request, template_name, self.get_context_data())
 
-
-
-
+#def filtrarPregunta(request):
+ #   context = {}
+  #  criterio = request.Get.get('criterio')
+   # print(" llegue", criterio)
+    #if len(criterio) > 0:
+        #lista = Pregunta.objects.all()
+     #   listado = Pregunta.objects.filter(criterio)
+      #  context['criterio'] = listado
+      #  return render(request,'listarPreguntas.html', context)
+   # elif criterio == "":
+   #     context['error'] = 'criterio de busqueda vacio'
+    #    return render(request,'listarPreguntas.html')
+   # elif not criterio in Pregunta:
+    #    context['error'] =messages.CheckMessage("El campo no existe")
+     #   return render(request,'listarPreguntas.html', context)
+   # else:
+        #listado = Pregunta.objects.filter(criterio)
+    #    context['criterio'] = listado
+     #   return render(request,'listarPreguntas.html', context)

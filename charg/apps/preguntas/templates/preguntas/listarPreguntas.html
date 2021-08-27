@@ -12,7 +12,23 @@
     </a>
     </div>
 </div>
-
+<!--FILTRO BUSQUEDA DE PREGUNTAS-->
+<form method="GET">
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" id="criterio" name="criterio" placeholder="Criterio de busqueda" />
+                    <span class="input-group-append">
+                        <div class=" input-group-text bg-transparent">
+                            <button onclick="filtrarPregunta()"  type="submit" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Buscar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        </div>
+                    </span>
+                </div>
+            </div>        
+         </div>
+</form>
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -39,6 +55,8 @@
         
     </tbody>
 </table>
+<hr>
+<br>
 <div class="row">
     <div class="col"></div>
     <div class="col">
