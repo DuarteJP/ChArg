@@ -14,22 +14,35 @@ def ListarCategorias(request):
     context['categorias'] = listado
     return render(request, 'categorias/listadoCategoria.html', context)
 
-class CreateViewCategoria(CreateView):
-    template_name = 'categorias/agregar.html'
-    form_class = Form_categoria
-    success_message = 'Success: Creado correctamente.'
-    success_url = reverse_lazy('categorias:listar')
+# class CreateViewCategoria(CreateView):
+#     template_name = 'categorias/agregar.html'
+#     form_class = Form_categoria
+#     success_message = 'Success: Creado correctamente.'
+#     success_url = reverse_lazy('categorias:listar')
 
-    def get(self, request, *args, **kwargs):
-        context = {'form': Form_categoria()}
-        return render(request,'categorias/agregar.html', context)
+#     def get(self, request, *args, **kwargs):
+#         context = {'form': Form_categoria()}
+#         return render(request,'categorias/agregar.html', context)
 
-    def post(self, *args, **kwargs):
-        template_name = 'categorias/agregar.html'
-        form = self.Form_respuesta(request.POST)
+#     def post(self, *args, **kwargs):
+#         template_name = 'categorias/agregar.html'
+#         form = self.Form_respuesta(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('categorias:listar')
+#         else:
+#             form=self.Form_respuesta()
+#             return render(request, template_name, self.get_context_data())
+
+
+def Agregar(request):
+    form = Form_categoria(request.POST or None)
+    if request.method == "POST":
         if form.is_valid():
-            form.save()
+            formulario = form.save()
+            #messages.success(request, 'Categoria agregada')
             return redirect('categorias:listar')
-        else:
-            form=self.Form_respuesta()
-            return render(request, template_name, self.get_context_data())
+    context = {
+        "form": form
+    }
+    return render(request, 'categorias/agregar.html', context)

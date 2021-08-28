@@ -45,6 +45,6 @@ urlpatterns = [
     path('partidas/', include('apps.partidas.urls')),
 
     #categorias
-    #path('categorias/', include('apps.categorias.urls'))    
+    path('categorias/', include('apps.categorias.urls'))    
 
 ]
