@@ -7,6 +7,11 @@ class Partida(TimeModels):
 	#descripcion = models.CharField(max_length = 50, null = True)
 	puntaje = models.IntegerField(default = 0)
 	finalizada = models.BooleanField(default = False)
+	# modo = models.IntegerField(null=True)
 
 	def __str__(self):
 		return str(self.puntaje)
+
+	# def crear_partida(self, usuario, puntaje = 0, finalizada = False, modo=null):
+ #        partida = self.create(usuario=usuario, puntaje=puntaje, finalizada=finalizada, modo=modo)
+ #        return partida

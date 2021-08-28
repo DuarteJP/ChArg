@@ -36,6 +36,7 @@ def seleccionarCategoria(request):
 	#Se recorren todas las preguntas para asegurarse que ninguna tenga Mostrada=True
 	preguntas = Pregunta.objects.filter(mostrada=True).update(mostrada=False)
 	respuestas = Respuesta.objects.filter(mostrada=True).update(mostrada=False)
+	#partida = Partida.objects.crear_partida(usuario=request.user.id)
 	categoria = Categoria.objects.all()
 	context['categorias'] = categoria
 	return render(request, 'partidas/seleccionarCategoria.html', context)
@@ -43,6 +44,9 @@ def seleccionarCategoria(request):
 @login_required
 def mostrarPregunta(request, pk):
 	categoria = Categoria.objects.get(id=pk)
+	#partida = Partida.objects.get(usuario_id=pk)
+	#id_partida = partida.id
+	#partida = Partida.objects.filter(id=id_partida).update(modo=pk)
 	preguntas = Pregunta.objects.filter(mostrada = False, categoria_id = pk)
 	preg = list(Pregunta.objects.filter(mostrada=False, categoria_id=pk))
 	rand = random.choice(preg)
@@ -53,3 +57,5 @@ def mostrarPregunta(request, pk):
 	context={'categoria': categoria, 'pregunta': pregunta, 'respuesta': respuestas}
 	return render(request, 'partidas/mostrarPregunta.html', context)
 
+# @login_required
+# def mostrarResultado(request, pk):
