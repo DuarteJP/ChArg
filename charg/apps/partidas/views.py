@@ -53,5 +53,3 @@ def mostrarPregunta(request, pk):
 	context={'categoria': categoria, 'pregunta': pregunta, 'respuesta': respuestas}
 	return render(request, 'partidas/mostrarPregunta.html', context)
 
-
- 	
