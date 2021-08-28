@@ -14,12 +14,12 @@
     	</thead>
     	<tbody>
         	{% if ranking %}
-        		{% for p in ranking %}
+        		{% for p in ranking%}
         			<tr>
             		<td scope="row">{{p.puntaje}}</td>
                   	<td scope="row">{{p.usuario_id}}</td>            			
         			</tr>
-        		{% endfor %}
+              {% endfor %}
         	{% endif %}
     </tbody>
 </table>

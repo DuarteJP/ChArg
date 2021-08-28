@@ -13,20 +13,18 @@
 	<div class="col s12 m8 offset-m2">
 		<h4 class="light">Categoría seleccionada: {{ categoria.nombre }}</h4>
 	</div>
-	{% if pregunta %}
 	<div class="col s12 m8 offset-m2">
-		<h4 class="light">{{ pregunta.descripcion }}</h4>
+		<h4 class="light">Pregunta: {{ pregunta.descripcion }}</h4>
 	</div>
+	<div class="col s12 m8 offset-m2">
 	{% if respuesta %}
 		{% for r in respuesta %}
 			<a href="#" class="btn-large waves-effect waves-light">{{ r.descripcion }}</a>
 		{% endfor %}
 	{% else %}
-			<p>No hay respuestas para esta pregunta</p>
+			<h4 class="light">No hay respuestas para esta pregunta</h4>
 	{% endif %}
-	{% else %}
-			<p>No hay preguntas para esta categoria</p>
-	{% endif %}
+	</div>
 	
 </div>
 <div class="row center">

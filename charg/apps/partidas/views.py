@@ -40,22 +40,17 @@ def seleccionarCategoria(request):
 	return render(request, 'partidas/seleccionarCategoria.html', context)
 
 @login_required
-def mostrarCategoria(request, pk):
-	context ={}
-	categoria = Categoria.objects.get(id = pk)
-	context['categoria'] = categoria
-	return render(request, 'partidas/mostrarPregunta.html', context)
-
-@login_required
 def mostrarPregunta(request, pk):
-	context ={}
-	pregunta = Pregunta.objects.filter(mostrada = False, categoria_id = pk)
-	context['pregunta'] = pregunta
+	categoria = Categoria.objects.get(id=pk)
+	preguntas = Pregunta.objects.filter(mostrada = False, categoria_id = pk)
+	preg = list(Pregunta.objects.filter(mostrada=False, categoria_id=pk))
+	rand = random.choice(preg)
+	id_preg = rand.id
+	pregunta = Pregunta.objects.filter(id=id_preg).update(mostrada=True)
+	pregunta = Pregunta.objects.get(id=id_preg)
+	respuestas = Respuesta.objects.filter(pregunta_id=id_preg)
+	context={'categoria': categoria, 'pregunta': pregunta, 'respuesta': respuestas}
 	return render(request, 'partidas/mostrarPregunta.html', context)
 
-@login_required
-def mostrarRespuesta(request, pk):
-	context ={}
-	respuestas = Respuesta.objects.filter(pregunta_id = pk)
-	context['respuesta'] = respuestas
-	return render(request, 'partidas/categoriaSeleccionada.html', context)
+
+ 	
