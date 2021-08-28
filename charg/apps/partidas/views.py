@@ -35,6 +35,7 @@ def seleccionarCategoria(request):
 	context ={}
 	#Se recorren todas las preguntas para asegurarse que ninguna tenga Mostrada=True
 	preguntas = Pregunta.objects.filter(mostrada=True).update(mostrada=False)
+	respuestas = Respuesta.objects.filter(mostrada=True).update(mostrada=False)
 	categoria = Categoria.objects.all()
 	context['categorias'] = categoria
 	return render(request, 'partidas/seleccionarCategoria.html', context)
