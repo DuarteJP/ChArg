@@ -11,6 +11,23 @@
     <span class="fa fa-plus-circle">&nbsp;Agregar</span> 
     </a>
 </div>
+<!--FILTRO BUSQUEDA DE RESPUESTAS-->
+<form action="/categorias/buscar/" method="GET">
+    <div class="form-row">
+        <div class="form-group col-12">
+            <div class="input-group">
+                <input class="form-control py-2 border-right-0 border" type="text" name="criterio" placeholder="Criterio de búsqueda" />
+                <span class="input-group-append">
+                    <div class=" input-group-text bg-transparent">
+                        <button  type="submit" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Buscar">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    </div>
+                </span>
+            </div>
+        </div>        
+     </div>
+</form>
 
 <table class="table">
     <thead class="thead-dark">
@@ -37,9 +54,26 @@
             </td>
         </tr>
         {% endfor %}
+        <!--RESULTADO DE BUSQUEDA -->
+        {% elif encontrado %}
+        {% for i in encontrado %}
+        <tr>
+            <td scope="row">{{i.nombre}}</td>
+            <td scope="row">{{i.descripcion}}</td>
+            <td scope="row">{{i.icono}}</td>
+            <td scope="row">{{i.color}}</td>
+            <td>
+                <a href="#"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Ver detalle">
+                    <i class="fas fa-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
         {% endif %}
-        
     </tbody>
+    <div>
+        <label for="">Resultado: {{criterio}}</label>
+    </div>
 </table>
 <hr>
 <br>

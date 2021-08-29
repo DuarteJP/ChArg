@@ -46,3 +46,18 @@ def Agregar(request):
         "form": form
     }
     return render(request, 'categorias/agregar.html', context)
+
+def filtrarCategoria(request):
+    context = {}
+    if request.GET["criterio"]:
+        criterio = request.GET["criterio"]
+        print(criterio)
+        listado = Categoria.objects.filter(nombre__icontains=criterio)
+        context['encontrado'] = listado
+        #print()
+        return render(request,'categorias/listadoCategoria.html', context)
+    elif request.GET["criterio"] == "":
+        criterio = "Introduzca criterio de búsqueda"
+        listado = Categoria.objects.all().order_by('nombre') # ORM de django
+        context['categorias'] = listado
+        return render(request, 'categorias/listadoCategoria.html', context)

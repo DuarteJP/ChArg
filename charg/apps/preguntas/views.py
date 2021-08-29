@@ -62,33 +62,4 @@ def filtrarPregunta(request):
         context['preguntas'] = listado
         return render(request, 'preguntas/listarPreguntas.html', context)
 
-    #listado = Pregunta.objects.filter(descripcion=criterio)
-    #context['criterio'] = listado
-    #return HttpResponse(criterio)
-    #return HttpResponse(criterio)
-    #form = Form_pregunta(request.GET or None)
-    #if request.method == "GET":
-     #   if form.is_valid():
-      #      criterio = request.Get.get('criterio')
-       #     print(criterio)
-
-    #listado = Pregunta.objects.filter(descripcion=criterio)
-    #return render(request,'preguntas/listarPreguntas.html', listado)
     
-    #context = {}
-    #criterio = request.Get.get('criterio')
-    #print(" llegue", criterio)
-    #if len(criterio) > 0:
-    #    listado = Pregunta.objects.filter()
-    #    context['criterio'] = listado
-    #    return render(request,'listarPreguntas.html', context)
-    #elif criterio == "":
-    #    context['error'] = 'criterio de busqueda vacio'
-    #    return render(request,'listarPreguntas.html')
-    #elif not criterio in Pregunta:
-    #    context['error'] =messages.CheckMessage("El campo no existe")
-    #    return render(request,'listarPreguntas.html', context)
-    #else:
-    #    listado = Pregunta.objects.filter(criterio)
-    #    context['criterio'] = listado
-    #    return render(request,'listarPreguntas.html', context)
