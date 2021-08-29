@@ -13,14 +13,14 @@
     </div>
 </div>
 <!--FILTRO BUSQUEDA DE PREGUNTAS-->
-<form method="GET">
+<form action="/preguntas/buscar/" method="GET">
         <div class="form-row">
             <div class="form-group col-12">
                 <div class="input-group">
-                    <input class="form-control py-2 border-right-0 border" type="search" id="criterio" name="criterio" placeholder="Criterio de busqueda" />
+                    <input class="form-control py-2 border-right-0 border" type="text" name="criterio" placeholder="Criterio de búsqueda" />
                     <span class="input-group-append">
                         <div class=" input-group-text bg-transparent">
-                            <button onclick="filtrarPregunta()"  type="submit" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Buscar">
+                            <button  type="submit" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Buscar">
                             <i class="fa fa-search"></i>
                         </button>
                         </div>
@@ -44,7 +44,22 @@
             <td scope="row">{{p.descripcion}}</td>
             <td scope="row">{{p.categoria.nombre}}</td>
             <td>
-                <!--{% url 'preguntas:asignar' p.id %}-->
+               
+            <a href="#"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Ver detalle">
+                    <i class="fas fa-eye"></i>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+        
+        <!--FILTRO DE BUSQUEDA -->
+        {% elif encontrado %}
+        {% for r in encontrado %}
+        <tr>
+            <td scope="row">{{r.descripcion}}</td>
+            <td scope="row">{{r.categoria.nombre}}</td>
+            <td>
+               
                 <a href="#"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Ver detalle">
                     <i class="fas fa-eye"></i>
                 </a>
@@ -54,6 +69,9 @@
         {% endif %}
         
     </tbody>
+    <div>
+        <label for="">Resultado: {{criterio}}</label>
+    </div>
 </table>
 <hr>
 <br>
