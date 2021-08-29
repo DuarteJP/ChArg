@@ -8,7 +8,6 @@ from django.http.response import HttpResponse
 from django.urls import reverse_lazy
 #from bootstrap_modal_forms.generic import BSModalCreateView
 from .models import Partida
-from .forms import Check_respuesta
 from apps.categorias.models import Categoria
 from django.contrib.auth.models import User
 from apps.preguntas.models import Pregunta
