@@ -22,14 +22,6 @@
 </head>
 
 <body>
-    <!--SCRIPS MODAL
- -->
-    <!-- <script  src="{% static 'js/jquery.js' %}"> </script>  -->
-    <!--<script  src="{% static 'js/bootstrap.js' %}"> </script>--> 
-    <!--<script  src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"> </script> 
-    <script  src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script> -->
-
-
     {% include 'header.html' %}
     <main>
         <div class="section no-pad-bot">
@@ -43,6 +35,12 @@
     <script src="{% static 'js/materialize.min.js' %}"></script>
     <script>
         M.AutoInit();
+    </script>
+    <script>
+        setTimeout(function(){
+            if ($('#msg').length > 0)
+                $('#msg').remove();
+        }, 3000);
     </script>
 </body>
 

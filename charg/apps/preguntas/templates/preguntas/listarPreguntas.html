@@ -4,6 +4,9 @@
 {% endblock %}
 
 {% block contenido %}
+
+{% include 'messages.html' %}
+
 <div class="row">
     <h1>Listado de Preguntas</h1>
     <div class="col-4">
@@ -47,10 +50,10 @@
             <td scope="row">{{p.categoria.nombre}}</td>
             <td>
                 <a href="{% url 'preguntas:modificar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Editar">
-                    <i class="fa fa-address-book"></i>
+                    <i class="fas fa-edit"></i>
                 </a>
                 &nbsp;
-                <a href="#"  type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="right" title="Eliminar">
+                <a href="{% url 'preguntas:eliminar' p.id %}"  type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="right" title="Eliminar">
                     <i class="fa fa-trash"></i>
                     
                 </a>
@@ -67,10 +70,10 @@
             <td scope="row">{{p.categoria.nombre}}</td>
             <td>
                 <a href="{% url 'preguntas:modificar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Editar">
-                    <i class="fa fa-address-book"></i>
+                    <i class="fas fa-edit"></i>
                 </a>
                 &nbsp;
-                <a href="#"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Eliminar">
+                <a href="{% url 'preguntas:eliminar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Eliminar">
                     <i class="fa fa-trash"></i>
                 </a>
             </td>

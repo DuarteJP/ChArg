@@ -9,7 +9,5 @@ urlpatterns = [
   path('buscar/', views.filtrarRespuesta, name='buscar'),
   path('modificar/<int:pk>', views.modificarRespuesta, name='modificar'),
   path('actualizar/<int:pk>', views.actualizarRespuesta, name='actualizar'),
-  
-
-  #path('Asignar/<int:pk>', views.AsignarRespuestas, name='asignar'),
+  path('eliminar/<int:pk>', views.eliminarRespuesta, name='eliminar'),
 ]

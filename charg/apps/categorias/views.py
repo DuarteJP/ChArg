@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.http import request
+from django.contrib import messages
 # Create your views here.
 
 @login_required
@@ -74,3 +75,10 @@ def actualizarCategoria(request, pk):
         form.save()
     categorias = Categoria.objects.all()
     return render(request,'categorias/listadoCategoria.html', {"categorias":categorias})
+
+def eliminarCategoria(request, pk):
+    objeto = Categoria.objects.get(id = pk)
+    objeto.delete()
+    objeto = Categoria.objects.all()
+    messages.success(request, 'Seleccion eliminada exitosamente!')
+    return render(request,'categorias/listadoCategoria.html', {"categorias":objeto, "mensaje":'ok'})

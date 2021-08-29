@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import Form_respuesta
 from django.shortcuts import redirect, render
 from .models import Respuesta
+from django.contrib import messages
 
 # Create your views here.
 
@@ -61,3 +62,10 @@ def actualizarRespuesta(request, pk):
         form.save()
     respuestas = Respuesta.objects.all()
     return render(request,'respuestas/listadoRespuestas.html', {"respuestas":respuestas})
+
+def eliminarRespuesta(request, pk):
+    objeto = Respuesta.objects.get(id = pk)
+    objeto.delete()
+    objeto = Respuesta.objects.all()
+    messages.success(request, 'Selección eliminada exitosamente!')
+    return render(request,'respuestas/listadoRespuestas.html', {"respuestas":objeto, "mensaje":'ok'})

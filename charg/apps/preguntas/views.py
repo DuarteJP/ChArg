@@ -1,6 +1,6 @@
 from io import IOBase
 from django import forms
-from django.core.checks import messages
+from django.contrib import messages
 from django.http import request, HttpResponse
 from .forms import Form_pregunta
 from django.shortcuts import redirect, render
@@ -24,7 +24,7 @@ def ListarPreguntas(request):
     context['preguntas'] = listado
     return render(request, 'preguntas/listarPreguntas.html', context)
 
-
+@login_required
 def AsignarRespuestas(request, pk):
     context = {}
     #SELECT * FROM PRODUCTOS WHERE id = pk
@@ -33,20 +33,19 @@ def AsignarRespuestas(request, pk):
     context['pregunta'] = objeto
     return render(request, 'respuestas/listadoRespuestas.html', context)
 
-
+@login_required
 def Agregar(request):
     form = Form_pregunta(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
             formulario = form.save()
-            #messages.success(request, 'Pregunta agregada')
             return redirect('preguntas:listar')
     context = {
         "form": form
     }
     return render(request, 'preguntas/agregar.html', context)
 
-
+@login_required
 def filtrarPregunta(request):
     context = {}
     if request.GET["criterio"]:
@@ -54,7 +53,6 @@ def filtrarPregunta(request):
         print(criterio)
         listado = Pregunta.objects.filter(descripcion__icontains=criterio)
         context['encontrado'] = listado
-        #print()
         return render(request,'preguntas/listarPreguntas.html', context)
     elif request.GET["criterio"] == "":
         #criterio = "Introduzca criterio de busqueda"
@@ -62,10 +60,10 @@ def filtrarPregunta(request):
         context['preguntas'] = listado
         return render(request, 'preguntas/listarPreguntas.html', context)
 
+@login_required
 def modificarPregunta(request, pk):
     objeto = Pregunta.objects.filter(id = pk).first() # ORM de django
     form = Form_pregunta(instance=objeto)
-    #context['pregunta'] = objeto
     return render(request, 'preguntas/modificar.html', {"form": form,'objeto':objeto})
 
 def actualizarPregunta(request, pk):
@@ -74,9 +72,13 @@ def actualizarPregunta(request, pk):
     if form.is_valid():
         form.save()
     preguntas = Pregunta.objects.all()
-    return render(request,'preguntas/listarPreguntas.html', {"preguntas":preguntas})
+    return render(request,'preguntas/listarPreguntas.html', {"preguntas":preguntas, "mensaje":'ok'})
     
 
-
-    def eliminarPregunta(request):
-        pass
+@login_required
+def eliminarPregunta(request, pk):
+    objeto = Pregunta.objects.get(id = pk)
+    objeto.delete()
+    objeto = Pregunta.objects.all()
+    messages.success(request, 'Seleccion eliminada exitosamente!')
+    return render(request,'preguntas/listarPreguntas.html', {"preguntas":objeto, "mensaje":'ok'})
