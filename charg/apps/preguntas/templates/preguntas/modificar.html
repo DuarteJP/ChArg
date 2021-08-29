@@ -2,7 +2,7 @@
 {% block contenido %}
 <div class="container-fluid">
     <!--/preguntas/modificar/-->
-        <form method="POST" action="">
+        <form method="POST" action="{% url 'preguntas:actualizar' objeto.id %}">
           {% csrf_token %}
         <div class="modal-header">
           <h5 class="modal-title">ABM Preguntas</h5>
@@ -16,7 +16,6 @@
           <a class="btn btn-primary" href="{% url 'preguntas:listar' %}">
               <i class="fas fa-undo-alt">&nbsp;Volver </i>
           </a>
-          </b>
         </div>
       </form>
     </div>

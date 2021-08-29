@@ -41,30 +41,38 @@
     </thead>
     <tbody>
         {% if categorias %}
-        {% for c in categorias %}
+        {% for p in categorias %}
         <tr>
-            <td scope="row">{{c.nombre}}</td>
-            <td scope="row">{{c.descripcion}}</td>
-            <td scope="row">{{c.icono}}</td>
-            <td scope="row">{{c.color}}</td>
+            <td scope="row">{{p.nombre}}</td>
+            <td scope="row">{{p.descripcion}}</td>
+            <td scope="row">{{p.icono}}</td>
+            <td scope="row">{{p.color}}</td>
             <td>
-                <a href="#"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Ver detalle">
-                    <i class="fas fa-eye"></i>
+                <a href="{% url 'categorias:modificar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Editar">
+                    <i class="fa fa-address-book"></i>
+                </a>
+                &nbsp;
+                <a href="#"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Eliminar">
+                    <i class="fa fa-trash"></i>
                 </a>
             </td>
         </tr>
         {% endfor %}
         <!--RESULTADO DE BUSQUEDA -->
         {% elif encontrado %}
-        {% for i in encontrado %}
+        {% for p in encontrado %}
         <tr>
-            <td scope="row">{{i.nombre}}</td>
-            <td scope="row">{{i.descripcion}}</td>
-            <td scope="row">{{i.icono}}</td>
-            <td scope="row">{{i.color}}</td>
+            <td scope="row">{{p.nombre}}</td>
+            <td scope="row">{{p.descripcion}}</td>
+            <td scope="row">{{p.icono}}</td>
+            <td scope="row">{{p.color}}</td>
             <td>
-                <a href="#"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Ver detalle">
-                    <i class="fas fa-eye"></i>
+                <a href="{% url 'categorias:modificar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Editar">
+                    <i class="fa fa-address-book"></i>
+                </a>
+                &nbsp;
+                <a href="#"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Eliminar">
+                    <i class="fa fa-trash"></i>
                 </a>
             </td>
         </tr>

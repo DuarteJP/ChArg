@@ -61,3 +61,16 @@ def filtrarCategoria(request):
         listado = Categoria.objects.all().order_by('nombre') # ORM de django
         context['categorias'] = listado
         return render(request, 'categorias/listadoCategoria.html', context)
+
+def modificarCategoria(request, pk):
+    objeto = Categoria.objects.filter(id = pk).first() # ORM de django
+    form = Form_categoria(instance=objeto)
+    return render(request, 'categorias/modificar.html', {"form": form,'objeto':objeto})
+
+def actualizarCategoria(request, pk):
+    objeto = Categoria.objects.get(id = pk)
+    form = Form_categoria(request.POST, instance=objeto)
+    if form.is_valid():
+        form.save()
+    categorias = Categoria.objects.all()
+    return render(request,'categorias/listadoCategoria.html', {"categorias":categorias})

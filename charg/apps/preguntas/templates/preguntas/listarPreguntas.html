@@ -32,6 +32,7 @@
 <table class="table">
     <thead class="thead-dark">
         <tr>
+            <th>#</th>
             <th>Pregunta</th>
             <th>Categoria</th>
             <th>Acción</th>
@@ -41,12 +42,17 @@
         {% if preguntas %}
         {% for p in preguntas %}
         <tr>
+            <td scope="row">{{p.id}}</td>
             <td scope="row">{{p.descripcion}}</td>
             <td scope="row">{{p.categoria.nombre}}</td>
             <td>
-               
-            <a href="#"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Ver detalle">
-                    <i class="fas fa-eye"></i>
+                <a href="{% url 'preguntas:modificar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Editar">
+                    <i class="fa fa-address-book"></i>
+                </a>
+                &nbsp;
+                <a href="#"  type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="right" title="Eliminar">
+                    <i class="fa fa-trash"></i>
+                    
                 </a>
             </td>
         </tr>
@@ -54,14 +60,18 @@
         
         <!--FILTRO DE BUSQUEDA -->
         {% elif encontrado %}
-        {% for r in encontrado %}
+        {% for p in encontrado %}
         <tr>
-            <td scope="row">{{r.descripcion}}</td>
-            <td scope="row">{{r.categoria.nombre}}</td>
+            <td scope="row">{{p.id}}</td>
+            <td scope="row">{{p.descripcion}}</td>
+            <td scope="row">{{p.categoria.nombre}}</td>
             <td>
-               
-                <a href="#"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Ver detalle">
-                    <i class="fas fa-eye"></i>
+                <a href="{% url 'preguntas:modificar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Editar">
+                    <i class="fa fa-address-book"></i>
+                </a>
+                &nbsp;
+                <a href="#"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Eliminar">
+                    <i class="fa fa-trash"></i>
                 </a>
             </td>
         </tr>
@@ -71,6 +81,7 @@
     </tbody>
     <div>
         <label for="">Resultado: {{criterio}}</label>
+        
     </div>
 </table>
 <hr>

@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% block contenido %}
 <div class="container-fluid">
-    <!--/preguntas/modificar/-->
-        <form method="POST" action="">
+        <form method="POST" action="{% url 'categorias:actualizar' objeto.id %}">
           {% csrf_token %}
         <div class="modal-header">
-          <h5 class="modal-title">ABM Preguntas</h5>
+          <h5 class="modal-title">ABM Categorías</h5>
         </div>
         <div class="modal-body">
             {{form.as_p}}
@@ -13,10 +12,9 @@
       <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Guardar</button>
           &nbsp;
-          <a class="btn btn-primary" href="{% url 'preguntas:listar' %}">
+          <a class="btn btn-primary" href="{% url 'categorias:listar' %}">
               <i class="fas fa-undo-alt">&nbsp;Volver </i>
           </a>
-          </b>
         </div>
       </form>
     </div>

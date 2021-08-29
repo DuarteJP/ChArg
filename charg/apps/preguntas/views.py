@@ -57,9 +57,26 @@ def filtrarPregunta(request):
         #print()
         return render(request,'preguntas/listarPreguntas.html', context)
     elif request.GET["criterio"] == "":
-        criterio = "Introduzca criterio de busqueda"
+        #criterio = "Introduzca criterio de busqueda"
         listado = Pregunta.objects.all().order_by('descripcion') # ORM de django
         context['preguntas'] = listado
         return render(request, 'preguntas/listarPreguntas.html', context)
 
+def modificarPregunta(request, pk):
+    objeto = Pregunta.objects.filter(id = pk).first() # ORM de django
+    form = Form_pregunta(instance=objeto)
+    #context['pregunta'] = objeto
+    return render(request, 'preguntas/modificar.html', {"form": form,'objeto':objeto})
+
+def actualizarPregunta(request, pk):
+    objeto = Pregunta.objects.get(id = pk)
+    form = Form_pregunta(request.POST, instance=objeto)
+    if form.is_valid():
+        form.save()
+    preguntas = Pregunta.objects.all()
+    return render(request,'preguntas/listarPreguntas.html', {"preguntas":preguntas})
     
+
+
+    def eliminarPregunta(request):
+        pass

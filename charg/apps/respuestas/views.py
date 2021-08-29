@@ -49,29 +49,15 @@ def filtrarRespuesta(request):
         context['respuestas'] = listado
         return render(request, 'respuestas/listadoRespuestas.html', context)
 
+def modificarRespuesta(request, pk):
+    objeto = Respuesta.objects.filter(id = pk).first() # ORM de django
+    form = Form_respuesta(instance=objeto)
+    return render(request, 'respuestas/modificar.html', {"form": form,'objeto':objeto})
 
-
-
-
-
-
-'''
-class CreateViewRespuesta(CreateView):
-    template_name = 'respuestas/agregar.html'
-    form_class = Form_respuesta
-    success_message = 'Success: Creado correctamente.'
-    success_url = reverse_lazy('respuestas:listar')
-
-    def get(self, request, *args, **kwargs):
-        context = {'form': Form_respuesta()}
-        return render(request,'respuestas/agregar.html', context)
-
-    def post(self, *args, **kwargs):
-        template_name = 'respuestas/agregar.html'
-        form = self.Form_respuesta(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('respuestas:listar')
-        else:
-            form=self.Form_respuesta()
-            return render(request, template_name, self.get_context_data())'''
+def actualizarRespuesta(request, pk):
+    objeto = Respuesta.objects.get(id = pk)
+    form = Form_respuesta(request.POST, instance=objeto)
+    if form.is_valid():
+        form.save()
+    respuestas = Respuesta.objects.all()
+    return render(request,'respuestas/listadoRespuestas.html', {"respuestas":respuestas})

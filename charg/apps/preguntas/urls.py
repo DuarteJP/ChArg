@@ -5,8 +5,10 @@ app_name = 'preguntas'
 
 urlpatterns = [
   path('crear/', views.Agregar, name='crear'),
-  #funciona
   path('listar/', views.ListarPreguntas, name='listar'),
-  path('buscar/', views.filtrarPregunta, name='listar'),
-  path('asignar/<int:pk>', views.AsignarRespuestas, name='asignar'),
+  path('buscar/', views.filtrarPregunta, name='buscar'),
+  path('modificar/<int:pk>', views.modificarPregunta, name='modificar'),
+  path('actualizar/<int:pk>', views.actualizarPregunta, name='actualizar'),
+  #path('eliminar/', views.eliminarPregunta, name='eliminar'),
+  #path('asignar/<int:pk>', views.AsignarRespuestas, name='asignar'),
 ]
