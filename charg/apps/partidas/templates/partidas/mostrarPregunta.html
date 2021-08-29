@@ -18,9 +18,27 @@
 	</div>
 	<div class="col s12 m8 offset-m2">
 	{% if respuesta %}
+		<form action="/partidas/mostrarResultado/" method="POST" name="seleccion">
+			{% csrf_token %}
+			<div class="form-row">
+				<div class="form-group col-12">
+                	<div class="input-group">
+                		<span class="input-group-append">
+                			<div class=" input-group-text bg-transparent">
 		{% for r in respuesta %}
-			<a href="#" class="btn-large waves-effect waves-light">{{ r.descripcion }}</a>
+				<label><input class="checkbox" type="checkbox" name="{{r.id}}" id="{{r.id}}" /><span>{{r.descripcion}}</span></label><br>
 		{% endfor %}
+						    </div>
+                    </span>
+                </div>
+            </div>        
+         </div>
+			<div class="col s12 m10 offset-m1">
+			<br>
+		    <button  type="submit" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Evaluar">
+            <i class="fa fa-search"></i>
+            </div>
+		</form>
 	{% else %}
 			<h4 class="light">No hay respuestas para esta pregunta</h4>
 	{% endif %}
@@ -32,3 +50,19 @@
 
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+                    
+                    
+     
+

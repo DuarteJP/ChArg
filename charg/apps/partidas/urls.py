@@ -10,5 +10,5 @@ urlpatterns = [
   path('misPartidas/<int:pk>', views.misPartidas, name='misPartidas'),
   path('seleccionarCategoria/', views.seleccionarCategoria, name='seleccionarCategoria'),
   path('mostrarPregunta/<int:pk>', views.mostrarPregunta, name='mostrarPregunta'),
-  #path('mostrarResultado/<int:pk>', views.mostrarResultado, name='mostrarResultado'),
+  path('mostrarResultado/', views.mostrarResultado, name='mostrarResultado'),
 ]

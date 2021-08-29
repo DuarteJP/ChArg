@@ -12,6 +12,4 @@ class Partida(TimeModels):
 	def __str__(self):
 		return str(self.puntaje)
 
-	# def crear_partida(self, usuario, puntaje = 0, finalizada = False, modo=null):
- #        partida = self.create(usuario=usuario, puntaje=puntaje, finalizada=finalizada, modo=modo)
- #        return partida
+
