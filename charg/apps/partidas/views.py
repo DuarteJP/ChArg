@@ -78,3 +78,6 @@ def mostrarResultado(request):
 		return render(request, 'partidas/mostrarResultado.html', context)
 	else:
 		return render(request, 'partidas/mostrarResultado.html')
+
+
+#form.fields['choice'].choices = list()
