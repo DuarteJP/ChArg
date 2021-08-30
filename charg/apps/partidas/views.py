@@ -8,6 +8,7 @@ from django.http.response import HttpResponse
 from django.urls import reverse_lazy
 #from bootstrap_modal_forms.generic import BSModalCreateView
 from .models import Partida
+#from .forms import SeleccionarRespuestas
 from apps.categorias.models import Categoria
 from django.contrib.auth.models import User
 from apps.preguntas.models import Pregunta
@@ -58,23 +59,24 @@ def mostrarPregunta(request, pk):
 	return render(request, 'partidas/mostrarPregunta.html', context)
 
 @login_required
-def mostrarResultado(request):
+def mostrarResultado(request, pk):
 	context = {}
-	if request.method=="GET":
-		seleccion=request.GET.get("seleccion")
-		seleccionadas = 0
-		for s in seleccion:
-			respuesta=Respuesta.objects.filter(id=seleccion.id).update(mostrada=True)
-			seleccionadas += 1
-		correctas = count(Respuesta.objects.filter(correcta=True, mostrada=True))
-		partida = Partida.objects.all().last()
-		pk = partida.id
-		total = correctas - (seleccionadas - correctas)
-		if (total < 0):
-			total = 0
-		total = total + partida.puntaje
-		puntaje = Partida.objects.filter(id = pk).update(puntaje=total)
-		context['puntaje'] = puntaje
+	if request.method=="POST":
+		seleccion=request.POST['seleccion']
+		# seleccionadas = 0
+		# for s in seleccion:
+		# 	respuesta=Respuesta.objects.filter(id=seleccion).update(mostrada=True)
+		# 	seleccionadas += 1
+		# correctas = count(Respuesta.objects.filter(correcta=True, mostrada=True))
+		# partida = Partida.objects.all().last()
+		# pk = partida.id
+		# total = correctas - (seleccionadas - correctas)
+		# if (total < 0):
+		# 	total = 0
+		# total = total + partida.puntaje
+		# puntaje = Partida.objects.filter(id = pk).update(puntaje=total)
+		# context['puntaje'] = puntaje
+		context['seleccion']=seleccion
 		return render(request, 'partidas/mostrarResultado.html', context)
 	else:
 		return render(request, 'partidas/mostrarResultado.html')
