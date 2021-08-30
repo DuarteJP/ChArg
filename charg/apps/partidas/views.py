@@ -60,13 +60,13 @@ def mostrarPregunta(request, pk):
 @login_required
 def mostrarResultado(request):
 	context = {}
-	if request.POST["seleccion"]:
-		seleccion=request.POST["seleccion"]
+	if request.method=="GET":
+		seleccion=request.GET.get("seleccion")
 		seleccionadas = 0
 		for s in seleccion:
 			respuesta=Respuesta.objects.filter(id=seleccion.id).update(mostrada=True)
 			seleccionadas += 1
-		correctas = count(Respuesta.objects.filter(correcta = True, mostrada = True))
+		correctas = count(Respuesta.objects.filter(correcta=True, mostrada=True))
 		partida = Partida.objects.all().last()
 		pk = partida.id
 		total = correctas - (seleccionadas - correctas)
@@ -76,3 +76,5 @@ def mostrarResultado(request):
 		puntaje = Partida.objects.filter(id = pk).update(puntaje=total)
 		context['puntaje'] = puntaje
 		return render(request, 'partidas/mostrarResultado.html', context)
+	else:
+		return render(request, 'partidas/mostrarResultado.html')

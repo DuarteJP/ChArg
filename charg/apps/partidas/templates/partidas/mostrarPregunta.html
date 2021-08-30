@@ -18,8 +18,8 @@
 	</div>
 	<div class="col s12 m8 offset-m2">
 	{% if respuesta %}
-		<form action="/partidas/mostrarResultado/" method="POST" name="seleccion">
-			{% csrf_token %}
+		<form action="/partidas/mostrarResultado/" method="GET" name="seleccion">
+
 			<div class="form-row">
 				<div class="form-group col-12">
                 	<div class="input-group">
