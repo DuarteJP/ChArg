@@ -10,27 +10,27 @@
 <div class="row">
     <h1>Listado de Respuestas</h1>
     <div class="col-4">
-    <a class="btn btn-warning"  href="{% url 'respuestas:crear' %}">
-    <span class="fa fa-plus-circle">&nbsp;Agregar</span> 
-    </a>
+        <a href="{% url 'respuestas:crear' %}" class="waves-effect waves-light btn-small">
+            <i class="material-icons left">add</i> AGREGAR
+        </a>
+    </div>
 </div>
+
 <!--FILTRO BUSQUEDA DE RESPUESTAS-->
-<form action="/respuestas/buscar/" method="GET">
-    <div class="form-row">
-        <div class="form-group col-12">
-            <div class="input-group">
-                <input class="form-control py-2 border-right-0 border" type="text" name="criterio" placeholder="Criterio de búsqueda" />
-                <span class="input-group-append">
-                    <div class=" input-group-text bg-transparent">
-                        <button  type="submit" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Buscar">
-                        <i class="fa fa-search"></i>
-                    </button>
-                    </div>
-                </span>
+<div class="card-panel">
+    <form action="/respuestas/buscar/" method="GET">
+        <div class="row">
+            <div class="col s11">
+                <input placeholder="búsqueda" id="criterio" name="criterio" type="text" class="validate">
             </div>
-        </div>        
-     </div>
-</form>
+            <div class="col s1">
+                <button type="submit" class="btn btn-secondary" data-toggle="tooltip" data-placement="right" title="Buscar">
+                    <i class="material-icons">search</i>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
 
 <table class="table">
     <thead class="thead-dark">
@@ -43,57 +43,55 @@
     </thead>
     <tbody>
         {% if respuestas %}
-        {% for p in respuestas %}
-        <tr>
-            <td scope="row">{{p.pregunta_id}}</td>
-            <td scope="row">{{p.descripcion}}</td>
-            <td scope="row">{{p.correcta}}</td>
-            <td>
-                <a href="{% url 'respuestas:modificar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Editar">
-                    <i class="fas fa-edit"></i>
-                </a>
-                &nbsp;
-                <a href="{% url 'respuestas:eliminar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Eliminar">
-                    <i class="fa fa-trash"></i>
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
+            {% for p in respuestas %}
+                <tr>
+                    <td scope="row">{{p.pregunta_id}}</td>
+                    <td scope="row">{{p.descripcion}}</td>
+                    <td scope="row">{{p.correcta}}</td>
+                    <td>
+                        <a href="{% url 'respuestas:modificar' p.id %}" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Editar">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <a href="{% url 'respuestas:eliminar' p.id %}" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Eliminar">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
         <!--RESULTADO DE BUSQUEDA -->
         {% elif encontrado %}
-        {% for p in encontrado %}
-        <tr>
-            <td scope="row">{{p.pregunta_id}}</td>
-            <td scope="row">{{p.descripcion}}</td>
-            <td scope="row">{{p.correcta}}</td>
-            <td>
-                <a href="{% url 'respuestas:modificar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Editar">
-                    <i class="fas fa-edit"></i>
-                </a>
-                &nbsp;
-                <a href="{% url 'respuestas:eliminar' p.id %}"  type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Eliminar">
-                    <i class="fa fa-trash"></i>
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
+            {% for p in encontrado %}
+                <tr>
+                    <td scope="row">{{p.pregunta_id}}</td>
+                    <td scope="row">{{p.descripcion}}</td>
+                    <td scope="row">{{p.correcta}}</td>
+                    <td>
+                        <a href="{% url 'respuestas:modificar' p.id %}" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Editar">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <a href="{% url 'respuestas:eliminar' p.id %}" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Eliminar">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
         {% endif %}
-        
+
     </tbody>
     <div>
-        <label for="">Resultado: {{criterio}}</label>
+        <label class="result-label" for="">Resultado: {{criterio}}</label>
     </div>
 </table>
 <hr>
 <br>
 <div class="row">
-    <div class="col-5"></div>
-    <div class="col-2">
-      <a class="btn btn-info" href="#" ><b>
-        <i class="fas fa-undo-alt">&nbsp;Volver </i>
-        </b></a>
+    <div class="col s12 right-align">
+        <button class="btn btn-info btn-rnk" href="#">
+            <a href="{% url 'home' %}">
+                <i class="material-icons">arrow_back</i>
+            </a>
+        </button>
     </div>
-    <div class="col-5"></div>
 </div>
 
 

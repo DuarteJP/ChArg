@@ -1,22 +1,30 @@
 {% extends 'base.html' %}
 {% block contenido %}
-<div class="container-fluid">
-    <!--/preguntas/modificar/-->
-        <form method="POST" action="{% url 'respuestas:actualizar' objeto.id %}">
-          {% csrf_token %}
-        <div class="modal-header">
-          <h5 class="modal-title">ABM Respuestas</h5>
+<div class="card-panel">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <div class="row">
+            <h5 class="black-text">ABM Respuestas</h5>
         </div>
-        <div class="modal-body">
-            {{form.as_p}}
-          </div>
-      <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Guardar</button>
-          &nbsp;
-          <a class="btn btn-primary" href="{% url 'respuestas:listar' %}">
-              <i class="fas fa-undo-alt">&nbsp;Volver </i>
-          </a>
+        <div class="row">
+            {{form.pregunta}}
         </div>
-      </form>
-    </div>
+        <div class="row">
+            {{form.descripcion}}
+        </div>
+        <div class="row">
+            <label>
+                <input type="checkbox" name="{{form.correcta.name}}"/>
+                <span>Correcta </span>
+            </label>
+        </div>
+
+        <div class="row right-align">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a type="button" href="{% url 'respuestas:listar' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+
+
+    </form>
+</div>
 {% endblock %}

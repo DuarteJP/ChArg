@@ -17,11 +17,29 @@ class LoginForm(AuthenticationForm):
                 'class':"mi-clase"
             }
         )
-        print(self.fields["password"].widget.attrs)
+
 
 
 class RegisterForm(UserCreationForm):
-    pass
+    def __init__(self,  *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["username"].widget.attrs.update(
+            {
+                'placeholder':"Ingrese usuario"
+            }
+        )
+        self.fields["password1"].widget.attrs.update(
+            {
+                'placeholder':"Ingrese contraseña",
+                'class':"mi-clase"
+            }
+        )
+        self.fields["password2"].widget.attrs.update(
+            {
+                'placeholder':"Ingrese contraseña",
+                'class':"mi-clase"
+            }
+        )        
 
 class EditProfileForm(UserChangeForm):
     class Meta:

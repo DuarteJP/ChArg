@@ -9,35 +9,36 @@
         <form action="" method="POST">
             {% csrf_token %}
             <div class="row">
-            {% for field in form %}
+                {% for field in form %}
                 <div class="col s12">
                     {{field}}
                     <label for="{{field.id_for_label}}">
-                        {{field.label}}
-                    </label>
+                            {{field.label}}
+                        </label>
                 </div>
-            {% endfor %}
+                {% endfor %}
             </div>
             {% if form.errors %}
-                <div class="row red-text center">
-                    Usuario o Contraseña Incorrectos
-                </div>
+            <div class="row black-text center">
+                Usuario o Contraseña Incorrectos
+            </div>
             {% endif %}
             <div class="row center">
                 <button class="btn waves-effect waves-light" type="submit" name="action">Ingresar
-                  <i class="material-icons right">send</i>
-                </button>
+                    <i class="material-icons right">send</i>
+                    </button>
             </div>
         </form>
     </div>
-        {% if messages %}       
+    {% if messages %}
         <script>
-        document.addEventListener("DOMContentLoaded", ()=>{
-            {% for message in messages %}
-            M.toast({html: '{{ message }}'})
-            {% endfor %}
+            document.addEventListener("DOMContentLoaded", ()=>{
+                {% for message in messages %}
+                M.toast({html: '{{ message }}'})
+                {% endfor %}
 
-        })
+            })
         </script>
-        {% endif %}        
+    {% endif %}
+
 {% endblock %}

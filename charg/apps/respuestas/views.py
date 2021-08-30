@@ -52,7 +52,10 @@ def filtrarRespuesta(request):
 
 def modificarRespuesta(request, pk):
     objeto = Respuesta.objects.filter(id = pk).first() # ORM de django
-    form = Form_respuesta(instance=objeto)
+    form = Form_respuesta(request.POST or None, instance=objeto)
+    if form.is_valid():
+        form.save()
+        return redirect('respuestas:listar')
     return render(request, 'respuestas/modificar.html', {"form": form,'objeto':objeto})
 
 def actualizarRespuesta(request, pk):
