@@ -9,11 +9,8 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from django.http.response import HttpResponse
 from django.urls import reverse_lazy
-#from bootstrap_modal_forms.generic import BSModalCreateView
 from .models import Pregunta
 from django.template.loader import render_to_string
-
-
 
 # Create your views here.
 
@@ -39,6 +36,7 @@ def Agregar(request):
     if request.method == "POST":
         if form.is_valid():
             formulario = form.save()
+            messages.success(request, "Creado correctamente!")
             return redirect('preguntas:listar')
     context = {
         "form": form
@@ -53,6 +51,7 @@ def filtrarPregunta(request):
         print(criterio)
         listado = Pregunta.objects.filter(descripcion__icontains=criterio)
         context['encontrado'] = listado
+        messages.success(request, "Búsqueda finalizada!")
         return render(request,'preguntas/listarPreguntas.html', context)
     elif request.GET["criterio"] == "":
         #criterio = "Introduzca criterio de busqueda"
@@ -72,6 +71,7 @@ def actualizarPregunta(request, pk):
     if form.is_valid():
         form.save()
     preguntas = Pregunta.objects.all()
+    messages.success(request, "Actualizado Correctamente!")
     return render(request,'preguntas/listarPreguntas.html', {"preguntas":preguntas, "mensaje":'ok'})
     
 
@@ -80,5 +80,5 @@ def eliminarPregunta(request, pk):
     objeto = Pregunta.objects.get(id = pk)
     objeto.delete()
     objeto = Pregunta.objects.all()
-    messages.success(request, 'Seleccion eliminada exitosamente!')
+    messages.success(request, 'Selección eliminada exitosamente!')
     return render(request,'preguntas/listarPreguntas.html', {"preguntas":objeto, "mensaje":'ok'})

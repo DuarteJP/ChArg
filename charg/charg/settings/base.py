@@ -128,10 +128,12 @@ LOGIN_URL = "usuarios:login"
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-MESSAGE_TAGS = {
-    messages.DEBUG: 'alert-info',
-    messages.INFO: 'alert-info',
-    messages.SUCCESS: 'alert-success',
-    messages.WARNING: 'alert-warning',
-    messages.ERROR: 'alert-danger',
-}
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+
+#MESSAGE_TAGS = {
+#    messages.DEBUG: 'alert-info',
+#    messages.INFO: 'alert-info',
+#    messages.SUCCESS: 'alert-success',
+#    messages.WARNING: 'alert-warning',
+#    messages.ERROR: 'alert-danger',
+#}

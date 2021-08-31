@@ -4,7 +4,32 @@
 {% endblock %}
 
 {% block contenido %}
-{% include 'messages.html' %}
+
+{% block js %}
+<!--BOTON ELIMINAR-->
+<script>
+    function eliminar(id){
+        swal.fire({
+            "title":"¿Está seguro que desea eliminar?",
+            "text":"Esta acción no se puede deshacer",
+            "icon":"question",
+            "showCancelButton":true,
+            "cancelButtonText":"Cancelar",
+            "confirmButtonText":"Eliminar",
+            "reverseButtons":true,
+            "confirmButtonColor":"darkred",
+            "cancelButtonColor":"#3E00FF",
+        })
+        .then(function(result){
+            if (result.isConfirmed){
+                window.location.href = "/categorias/eliminar/"+id
+            }
+        })
+    }
+    
+</script>
+{% endblock %}
+
 <div class="row">
     <h1>Listado de Categorias</h1>
     <div class="col-4">
@@ -53,7 +78,8 @@
                             data-toggle="tooltip" data-placement="right" title="Editar">
                             <i class="material-icons">edit</i>
                         </a>
-                        <a href="{% url 'categorias:eliminar' p.id %}" type="button" class="btn btn-warning"
+                        <!--href="{% url 'categorias:eliminar' p.id %}"-->
+                        <a onclick="eliminar({{p.id}})" type="button" class="btn btn-warning"
                             data-toggle="tooltip" data-placement="right" title="Eliminar">
                             <i class="material-icons">delete</i>
                         </a>
@@ -73,7 +99,8 @@
                             data-toggle="tooltip" data-placement="right" title="Editar">
                             <i class="material-icons">edit</i>
                         </a>
-                        <a href="{% url 'categorias:eliminar' p.id %}" type="button" class="btn btn-warning"
+                        <!--href="{% url 'categorias:eliminar' p.id %}"-->
+                        <a onclick="eliminar({{p.id}})" type="button" class="btn btn-warning"
                             data-toggle="tooltip" data-placement="right" title="Eliminar">
                             <i class="material-icons">delete</i>
                         </a>

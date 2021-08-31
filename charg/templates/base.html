@@ -11,22 +11,20 @@
         {% block title %}
         {% endblock %}
     </title>
-    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script> -->
     <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-
 </head>
-
 <body>
     {% include 'header.html' %}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% include 'messages.html' %}
     <main>
         <div class="section no-pad-bot">
             <div class="container">
                 {% block contenido %}
+                
                 {% endblock %}
             </div>
         </div>
@@ -35,12 +33,6 @@
     <script src="{% static 'js/materialize.min.js' %}"></script>
     <script>
         M.AutoInit();
-    </script>
-    <script>
-        setTimeout(function(){
-            if ($('#msg').length > 0)
-                $('#msg').remove();
-        }, 3000);
     </script>
 </body>
 

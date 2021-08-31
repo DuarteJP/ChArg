@@ -5,7 +5,29 @@
 
 {% block contenido %}
 
-{% include 'messages.html' %}
+{% block js %}
+<!--BOTON ELIMINAR-->
+<script>
+    function eliminar(id){
+        swal.fire({
+            "title":"¿Está seguro que desea eliminar?",
+            "text":"Esta acción no se puede deshacer",
+            "icon":"question",
+            "showCancelButton":true,
+            "cancelButtonText":"Cancelar",
+            "confirmButtonText":"Eliminar",
+            "reverseButtons":true,
+            "confirmButtonColor":"darkred",
+            "cancelButtonColor":"#3E00FF",
+        })
+        .then(function(result){
+            if (result.isConfirmed){
+                window.location.href = "/respuestas/eliminar/"+id
+            }
+        })
+    }
+</script>
+{% endblock %}
 
 <div class="row">
     <h1>Listado de Respuestas</h1>
@@ -52,7 +74,8 @@
                         <a href="{% url 'respuestas:modificar' p.id %}" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Editar">
                             <i class="material-icons">edit</i>
                         </a>
-                        <a href="{% url 'respuestas:eliminar' p.id %}" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Eliminar">
+                        <!--href="{% url 'respuestas:eliminar' p.id %}"-->
+                        <a onclick="eliminar({{p.id}})" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Eliminar">
                             <i class="material-icons">delete</i>
                         </a>
                     </td>
@@ -69,7 +92,8 @@
                         <a href="{% url 'respuestas:modificar' p.id %}" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Editar">
                             <i class="material-icons">edit</i>
                         </a>
-                        <a href="{% url 'respuestas:eliminar' p.id %}" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Eliminar">
+                        <!-- href="{% url 'respuestas:eliminar' p.id %}" -->
+                        <a onclick="eliminar({{p.id}})" type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Eliminar">
                             <i class="material-icons">delete</i>
                         </a>
                     </td>

@@ -15,33 +15,12 @@ def ListarCategorias(request):
     context['categorias'] = listado
     return render(request, 'categorias/listadoCategoria.html', context)
 
-# class CreateViewCategoria(CreateView):
-#     template_name = 'categorias/agregar.html'
-#     form_class = Form_categoria
-#     success_message = 'Success: Creado correctamente.'
-#     success_url = reverse_lazy('categorias:listar')
-
-#     def get(self, request, *args, **kwargs):
-#         context = {'form': Form_categoria()}
-#         return render(request,'categorias/agregar.html', context)
-
-#     def post(self, *args, **kwargs):
-#         template_name = 'categorias/agregar.html'
-#         form = self.Form_respuesta(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('categorias:listar')
-#         else:
-#             form=self.Form_respuesta()
-#             return render(request, template_name, self.get_context_data())
-
-
 def Agregar(request):
     form = Form_categoria(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
             formulario = form.save()
-            #messages.success(request, 'Categoria agregada')
+            messages.success(request, "Creado correctamente!")
             return redirect('categorias:listar')
     context = {
         "form": form
@@ -55,7 +34,7 @@ def filtrarCategoria(request):
         print(criterio)
         listado = Categoria.objects.filter(nombre__icontains=criterio)
         context['encontrado'] = listado
-        #print()
+        messages.success(request, "Búsqueda finalizada!")
         return render(request,'categorias/listadoCategoria.html', context)
     elif request.GET["criterio"] == "":
         criterio = "Introduzca criterio de búsqueda"
@@ -74,11 +53,12 @@ def actualizarCategoria(request, pk):
     if form.is_valid():
         form.save()
     categorias = Categoria.objects.all()
+    messages.success(request, "Actualizado Correctamente!")
     return render(request,'categorias/listadoCategoria.html', {"categorias":categorias})
 
 def eliminarCategoria(request, pk):
     objeto = Categoria.objects.get(id = pk)
     objeto.delete()
     objeto = Categoria.objects.all()
-    messages.success(request, 'Seleccion eliminada exitosamente!')
+    messages.success(request, 'Selección eliminada exitosamente!')
     return render(request,'categorias/listadoCategoria.html', {"categorias":objeto, "mensaje":'ok'})

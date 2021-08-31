@@ -17,18 +17,12 @@ def ListarRespuestas(request):
     context['respuestas'] = listado
     return render(request, 'respuestas/listadoRespuestas.html', context)
 
-# def respuestaPregunta(request):
-#     context = {}
-#     listado = Pregunta.objects.all() # ORM de django
-#     context['pregunta'] = listado
-#     return render(request, 'respuestas/listadoRespuestas.html', context)
-
 def Agregar(request):
     form = Form_respuesta(request.POST or None)
     if request.method == "POST":
         if form.is_valid():
             formulario = form.save()
-            #messages.success(request, 'Pregunta agregada')
+            messages.success(request, 'Agregado correctamente!')
             return redirect('respuestas:listar')
     context = {
         "form": form
@@ -42,7 +36,7 @@ def filtrarRespuesta(request):
         print(criterio)
         listado = Respuesta.objects.filter(descripcion__icontains=criterio)
         context['encontrado'] = listado
-        #print()
+        messages.success(request, "Búsqueda finalizada!")
         return render(request,'respuestas/listadoRespuestas.html', context)
     elif request.GET["criterio"] == "":
         criterio = "Introduzca criterio de busqueda"
@@ -64,6 +58,7 @@ def actualizarRespuesta(request, pk):
     if form.is_valid():
         form.save()
     respuestas = Respuesta.objects.all()
+    messages.success(request, "Actualizado Correctamente!")
     return render(request,'respuestas/listadoRespuestas.html', {"respuestas":respuestas})
 
 def eliminarRespuesta(request, pk):
