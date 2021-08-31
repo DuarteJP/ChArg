@@ -10,12 +10,7 @@
 	<div class="col s12 m8 offset-m2">
 		<h4 class="light">Puntaje: {{puntaje.puntaje}}</h4>
 		{% for r in respuestas_seleccionadas %}
-		<h4 class="light">{{ r.descripcion }}: </h4>
-		{% if r.correcta %}
-			<h4 class="light">Correcta</h4>
-		{% else %}
-		<h4 class="light">Incorrecta</h4>
-		{% endif %}
+		<h4 class="light">{{ r.descripcion }}: {% if r.correcta %} Correcta {% else %} Incorrecta {% endif %}</h4>
 		{% endfor %}
 	</div>
 {% else %}
