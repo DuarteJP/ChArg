@@ -48,6 +48,7 @@ def mostrarPregunta(request, pk):
 	#partida = Partida.objects.get(usuario_id=pk)
 	#id_partida = partida.id
 	#partida = Partida.objects.filter(id=id_partida).update(modo=pk)
+	partida = Partida.objects.create(usuario = request.user)
 	preguntas = Pregunta.objects.filter(mostrada = False, categoria_id = pk)
 	preg = list(Pregunta.objects.filter(mostrada=False, categoria_id=pk))
 	rand = random.choice(preg)
@@ -62,8 +63,12 @@ def mostrarPregunta(request, pk):
 def mostrarResultado(request):
 	context = {}
 	if request.method=="POST":
-		print(request.POST)
-		seleccion=request.POST['seleccion']
+		seleccion = []
+		for i in request.POST:
+			if i != "csrfmiddlewaretoken":
+				seleccion.append(i)
+				print(seleccion)
+
 		# seleccionadas = 0
 		# for s in seleccion:
 		# 	respuesta=Respuesta.objects.filter(id=seleccion).update(mostrada=True)
