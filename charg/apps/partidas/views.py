@@ -37,7 +37,7 @@ def seleccionarCategoria(request):
 	#Se recorren todas las preguntas para asegurarse que ninguna tenga Mostrada=True
 	preguntas = Pregunta.objects.filter(mostrada=True).update(mostrada=False)
 	respuestas = Respuesta.objects.filter(mostrada=True).update(mostrada=False)
-	Partida.objects.raw('INSERT INTO partidas_partida (usuario) VALUES (%s)', [request.user.id])
+	partida = Partida.objects.create(usuario = request.user)
 	categoria = Categoria.objects.all()
 	context['categorias'] = categoria
 	return render(request, 'partidas/seleccionarCategoria.html', context)
@@ -45,10 +45,6 @@ def seleccionarCategoria(request):
 @login_required
 def mostrarPregunta(request, pk):
 	categoria = Categoria.objects.get(id=pk)
-	#partida = Partida.objects.get(usuario_id=pk)
-	#id_partida = partida.id
-	#partida = Partida.objects.filter(id=id_partida).update(modo=pk)
-	partida = Partida.objects.create(usuario = request.user)
 	preguntas = Pregunta.objects.filter(mostrada = False, categoria_id = pk)
 	preg = list(Pregunta.objects.filter(mostrada=False, categoria_id=pk))
 	rand = random.choice(preg)
@@ -84,7 +80,13 @@ def mostrarResultado(request):
 		for s in seleccion:
 			respuestas_seleccionadas.append(Respuesta.objects.get(id=int(s)))
 		print(respuestas_seleccionadas)
-		context={'puntaje': puntaje, 'respuestas_seleccionadas': respuestas_seleccionadas}
+		id_respuesta = int(seleccion[0])
+		pregunta = Respuesta.objects.get(id=id_respuesta)
+		id_pregunta = pregunta.pregunta_id
+		cat = Pregunta.objects.get(id=id_pregunta)
+		id_categoria = cat.categoria_id
+		categoria = Categoria.objects.get(id=id_categoria)
+		context={'puntaje': puntaje, 'respuestas_seleccionadas': respuestas_seleccionadas, 'categoria': categoria}
 		return render(request, 'partidas/mostrarResultado.html', context)
 	else:
 		return render(request, 'partidas/mostrarResultado.html')

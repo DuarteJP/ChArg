@@ -8,13 +8,14 @@
 
 {% if respuestas_seleccionadas %}
 	<div class="col s12 m8 offset-m2">
-		<h4 class="light">Puntaje: {{puntaje.puntaje}}</h4>
+		<h4 class="light">Categoría: {{categoria.nombre}}</h4>
+		<h5 class="light">Puntaje: {{puntaje.puntaje}}</h5>
 		{% for r in respuestas_seleccionadas %}
-		<h4 class="light">{{ r.descripcion }}: {% if r.correcta %} Correcta {% else %} Incorrecta {% endif %}</h4>
+		<h6 class="light">{{ r.descripcion }}: {% if r.correcta %} Correcta (+1 punto) {% else %} Incorrecta (-1 punto){% endif %}</h6>
 		{% endfor %}
 	</div>
 {% else %}
-acá no entró
+<h4 class="light">Debes seleccionar una respuesta.</h4>
 {% endif %}
 
 {% endblock %}

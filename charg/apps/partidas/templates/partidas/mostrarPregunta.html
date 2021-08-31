@@ -25,9 +25,11 @@
                 	<div class="input-group">
                 		<span class="input-group-append">
                 			<div class=" input-group-text bg-transparent">
+                				<div class="card-panel">
 		{% for r in respuesta %}
-				<label><input class="checkbox" type="checkbox" name="{{r.id}}" id="{{r.id}}" value="{{r.id}}"/><span>{{r.descripcion}}</span></label><br>
+				<label><input class="checkbox " type="checkbox" name="{{r.id}}" id="{{r.id}}" value="{{r.id}}"/><span class="light">{{r.descripcion}}</span></label><br>
 		{% endfor %}
+		</div>
 						    </div>
                     </span>
                 </div>
