@@ -67,7 +67,6 @@ def mostrarResultado(request):
 		for i in request.POST:
 			if i != "csrfmiddlewaretoken":
 				seleccion.append(i)
-				print(seleccion)
 
 		# seleccionadas = 0
 		# for s in seleccion:
