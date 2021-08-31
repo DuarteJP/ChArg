@@ -61,30 +61,31 @@ def mostrarPregunta(request, pk):
 
 @login_required
 def mostrarResultado(request):
-	context = {}
 	if request.method=="POST":
 		seleccion = []
 		for i in request.POST:
 			if i != "csrfmiddlewaretoken":
 				seleccion.append(i)
-
-		# seleccionadas = 0
-		# for s in seleccion:
-		# 	respuesta=Respuesta.objects.filter(id=seleccion).update(mostrada=True)
-		# 	seleccionadas += 1
-		# correctas = count(Respuesta.objects.filter(correcta=True, mostrada=True))
-		# partida = Partida.objects.all().last()
-		# pk = partida.id
-		# total = correctas - (seleccionadas - correctas)
-		# if (total < 0):
-		# 	total = 0
-		# total = total + partida.puntaje
-		# puntaje = Partida.objects.filter(id = pk).update(puntaje=total)
-		# context['puntaje'] = puntaje
-		context['seleccion']=seleccion
+		seleccionadas = 0
+		for s in seleccion:
+			respuesta=Respuesta.objects.filter(id=int(s)).update(mostrada=True)
+			seleccionadas += 1
+		correctas = (Respuesta.objects.filter(correcta=True, mostrada=True)).count()
+		incorrectas = (Respuesta.objects.filter(correcta=False, mostrada=True)).count()
+		partida = Partida.objects.all().last()
+		pk = partida.id
+		total = correctas - incorrectas
+		if (total < 0):
+			total = 0
+		total = total + partida.puntaje
+		puntaje = Partida.objects.filter(id = pk).update(puntaje=total)
+		puntaje = Partida.objects.get(id=pk)
+		respuestas_seleccionadas=[]
+		for s in seleccion:
+			respuestas_seleccionadas.append(Respuesta.objects.get(id=int(s)))
+		print(respuestas_seleccionadas)
+		context={'puntaje': puntaje, 'respuestas_seleccionadas': respuestas_seleccionadas}
 		return render(request, 'partidas/mostrarResultado.html', context)
 	else:
 		return render(request, 'partidas/mostrarResultado.html')
 
-
-#form.fields['choice'].choices = list()
