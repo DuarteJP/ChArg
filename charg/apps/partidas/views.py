@@ -59,9 +59,10 @@ def mostrarPregunta(request, pk):
 	return render(request, 'partidas/mostrarPregunta.html', context)
 
 @login_required
-def mostrarResultado(request, pk):
+def mostrarResultado(request):
 	context = {}
 	if request.method=="POST":
+		print(request.POST)
 		seleccion=request.POST['seleccion']
 		# seleccionadas = 0
 		# for s in seleccion:
