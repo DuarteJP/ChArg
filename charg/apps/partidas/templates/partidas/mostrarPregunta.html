@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-- Jugando
+- {{request.user.username}} está jugando
 {% endblock %}
 
 {% block contenido %}
@@ -10,46 +10,49 @@
 	<div class="col s12 m10 offset-m1">
 		<h1 class="header">Charg</h1>
 	</div>
+	{% if contador %}
+	<div class="col s12 m10 offset-m1">
+		<h4 class="light">Ya Respondiste 5 preguntas de esta categoría, por favor seleccione otra.</h4>
+		<a href="{% url 'home' %}" class="btn-large waves-effect waves-light"><i class="material-icons">arrow_forward</i>
+		</a>
+	</div>
+	{% else %}
+		{% if respuesta %}
 	<div class="col s12 m8 offset-m2">
 		<h4 class="light">Categoría seleccionada: {{ categoria.nombre }}</h4>
 	</div>
 	<div class="col s12 m8 offset-m2">
 		<h4 class="light">{{ pregunta.descripcion }}</h4>
 	</div>
-	<div class="col s12 m8 offset-m2">
-	{% if respuesta %}
-		<form action="{% url 'partidas:mostrarResultado' %}" method="POST" name="seleccion">
-			{% csrf_token %}
-			<div class="form-row">
-				<div class="form-group col-12">
-                	<div class="input-group">
-                		<span class="input-group-append">
-                			<div class=" input-group-text bg-transparent">
-                				<div class="card-panel">
-		{% for r in respuesta %}
-				<label><input class="checkbox " type="checkbox" name="{{r.id}}" id="{{r.id}}" value="{{r.id}}"/><span class="light">{{r.descripcion}}</span></label><br>
-		{% endfor %}
-		</div>
-						    </div>
-                    </span>
-                </div>
-            </div>        
-         </div>
-			<div class="col s12 m10 offset-m1">
-			<br>
-		    <button type="submit" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Evaluar">
-            <i class="fa fa-search"></i>
-            </div>
-		</form>
-	{% else %}
-			<h4 class="light">No hay respuestas para esta pregunta</h4>
+		<div class="col s12 m8 offset-m2">
+			<form action="{% url 'partidas:mostrarResultado' pregunta.id %}" method="POST" name="seleccion">
+				{% csrf_token %}
+				<div class="form-row">
+					<div class="form-group col-12">
+                		<div class="input-group">
+                			<span class="input-group-append">
+                				<div class=" input-group-text bg-transparent">
+			{% for r in respuesta %}
+					<label><input class="checkbox" type="checkbox" name="{{r.id}}" id="{{r.id}}" value="{{r.id}}"/><span>{{r.descripcion}}</span></label><br>
+			{% endfor %}
+							    </div>
+                 	   </span>
+              	  </div>
+          	  </div>        
+       	  </div>
+				<div class="col s12 m10 offset-m1">
+				<br>
+		  	  <button type="submit" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Evaluar">
+          	  <i class="fa fa-search"></i>
+          	  </div>
+			</form>
+			</div>
+		{% else %}
+		<h4 class="light">No hay respuestas para esta pregunta</h4>
+		{% endif %}
 	{% endif %}
-	</div>
+	
 </div>
-<div class="row center">
-
-
-
 
 {% endblock %}
 

@@ -15,7 +15,15 @@
 		{% endfor %}
 	</div>
 {% else %}
+	<div class="col s12 m8 offset-m2">
+		<h4 class="light">Por favor seleccione al menos una respuesta.</h4>
+	</div>
+{% endif %}
+{% if categoria %}
+	<a href="{% url 'partidas:mostrarPregunta' categoria %}" class="btn-large waves-effect waves-light"><i class="material-icons">arrow_forward</i>
+	</a>
 <h4 class="light">Debes seleccionar una respuesta.</h4>
+
 {% endif %}
 
 {% endblock %}
