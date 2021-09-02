@@ -20,22 +20,20 @@ from .import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.Home, name = 'home'),
-    #path('tablero/', views.Tablero, name = 'tablero'),
-    #path direccion a las app
 
+    #home
+    path('', views.Home, name = 'home'),
+
+    #nosotros  
+    path('nosotros', views.Nosotros, name='nosotros'),
+
+    #como-jugar
+    path('como-jugar', views.comoJugar, name='como-jugar'),
+
+    #usuarios
     path("usuarios/", include("apps.usuarios.urls")),
     
-    #usuarios
-    # path('usuarios/listado', listar_usuarios, name='listar_usuarios'),
-    # path('usuarios/crear', crear_usuario, name='crear_usuario'),
-    # path('usuarios/ver/<int:id>', ver_usuario, name='ver_usuario'),
-    # path('usuarios/modificar/<int:id>', modificar_usuario, name='modificar_usuario'),
-    # path('usuarios/eliminar/<int:id>', eliminar_usuario, name='eliminar_usuario')
-
-
-
-    #pregunta
+    #preguntas
     path('preguntas/', include('apps.preguntas.urls')),
 
     #respuestas
@@ -45,6 +43,6 @@ urlpatterns = [
     path('partidas/', include('apps.partidas.urls')),
 
     #categorias
-    path('categorias/', include('apps.categorias.urls'))    
+    path('categorias/', include('apps.categorias.urls')),
 
 ]

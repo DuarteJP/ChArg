@@ -7,9 +7,6 @@
 {% block contenido %}
 
 <div class="row center">
-	<div class="col s12 m10 offset-m1">
-		<h1 class="header">Charg</h1>
-	</div>
 	<div class="col s12 m8 offset-m2">
 		<h4 class="light">Seleccionar Categoría</h4>
 	</div>
@@ -17,8 +14,10 @@
 <div class="row center">
 	{% if categorias %}
 		{% for c in categorias %}
+		<div>
 			<a href="{% url 'partidas:mostrarPregunta' c.id %}" class="btn-large waves-effect waves-light">{{c.nombre}}
 			</a>
+		</div><br>
 		{% endfor %}
 	{% endif %}
 </div>
