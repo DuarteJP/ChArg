@@ -42,7 +42,7 @@ def seleccionarCategoria(request):
 def mostrarPregunta(request, pk):
 
 	categoria = Categoria.objects.get(pk=pk)
-	partida = Partida.objects.filter(categoria = categoria, usuario=request.user).last()
+	partida = Partida.objects.filter(categoria = categoria, usuario=request.user, finalizada=False).last()
 	if not partida:
 		partida = Partida()
 		partida.usuario = request.user
@@ -55,13 +55,14 @@ def mostrarPregunta(request, pk):
 		partida.contador = contador + 1
 		partida.save()
 		contador = partida.contador
-		preguntas = Pregunta.objects.filter(mostrada = False, categoria_id = pk)
-		rand = random.choice(preguntas)
-		id_preg = rand.id
-		pregunta = Pregunta.objects.get(id=id_preg)
-		pregunta.mostrada=True
-		pregunta.save()
-		respuestas = Respuesta.objects.filter(pregunta_id=id_preg)
+		pregunta = Pregunta.objects.filter(mostrada = False, categoria_id = pk).order_by("?").first()
+		if pregunta:
+			pregunta.mostrada=True
+			pregunta.save()
+		else:
+			pregunta = Pregunta.objects.filter(categoria_id = pk).order_by("?").first()
+		
+		respuestas = Respuesta.objects.filter(pregunta_id=pregunta.id)
 		context={'categoria': categoria, 'pregunta': pregunta, 'respuesta': respuestas}
 		return render(request, 'partidas/mostrarPregunta.html', context)
 	else:
