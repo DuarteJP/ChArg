@@ -1,5 +1,3 @@
-from ChArg.charg.charg.settings.local import DEBUG
-
 from .base import *
 if ENVIROMENT == "PROD":
     DEBUG = False
