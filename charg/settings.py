@@ -125,7 +125,7 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 ENVIROMENT = os.environ.get("ENVIROMENT","LOCAL")
 
 if ENVIROMENT == "PROD":
-    DEBUG = False
+    DEBUG = os.environ.get("DEBUG", False)
     import django_heroku
     django_heroku.settings(locals())
 else:
