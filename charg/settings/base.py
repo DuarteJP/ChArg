@@ -125,6 +125,19 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 ENVIROMENT = os.environ.get("ENVIROMENT","LOCAL")
 
 if ENVIROMENT == "PROD":
-    from production import *
+    DEBUG = False
+    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+    import django_heroku
+    django_heroku.settings(locals())
 else:
-    from local import * 
+    DEBUG = True
+
+    ALLOWED_HOSTS = []
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
