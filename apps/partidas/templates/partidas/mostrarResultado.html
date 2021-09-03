@@ -7,7 +7,7 @@
 {% block contenido %}
 {% if respuestas_seleccionadas %}
 	<div class="col s12 m8 offset-m2">
-		<h3 class="light">Puntaje acumulado: {{puntaje.puntaje}}</h3>
+		<h3 class="light">Puntaje acumulado: {{puntaje}}</h3>
 		{% for r in respuestas_seleccionadas %}
 		<h4 class="light">{{ r.descripcion }}: {% if r.correcta %} <i class="material-icons">check_circle</i> {% else %} <i class="material-icons">cancel</i> {% endif %}</h4>
 		{% endfor %}

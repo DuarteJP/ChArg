@@ -40,6 +40,7 @@ def seleccionarCategoria(request):
 
 @login_required
 def mostrarPregunta(request, pk):
+
 	categoria = Categoria.objects.get(pk=pk)
 	partida = Partida.objects.filter(categoria = categoria).last()
 	if not partida:
@@ -74,8 +75,9 @@ def mostrarPregunta(request, pk):
 def mostrarResultado(request, pk):
 	if request.method=="POST":
 		seleccion = []
-		partida = Partida.objects.all().last()
-		categoria = partida.categoria_id
+		pregunta = Pregunta.objects.get(pk=pk)
+		categoria = pregunta.categoria
+		partida = Partida.objects.filter(categoria = categoria).last()
 		id_partida = partida.id
 		for i in request.POST:
 			if i != "csrfmiddlewaretoken":
@@ -90,8 +92,9 @@ def mostrarResultado(request, pk):
 		if (total < 0):
 			total = 0
 		total = total + partida.puntaje
-		puntaje = Partida.objects.filter(id = id_partida).update(puntaje=total)
-		puntaje = Partida.objects.get(id=id_partida)
+		partida.puntaje = total
+		partida.save()
+		puntaje = partida.puntaje
 		respuestas_seleccionadas=[]
 		for s in seleccion:
 			respuestas_seleccionadas.append(Respuesta.objects.get(id=int(s)))
@@ -99,7 +102,7 @@ def mostrarResultado(request, pk):
 		pregunta = Respuesta.objects.get(id=id_respuesta)
 		id_pregunta = pregunta.pregunta_id
 		cat = Pregunta.objects.get(id=id_pregunta)
-		context={'puntaje': puntaje, 'respuestas_seleccionadas': respuestas_seleccionadas, 'categoria': categoria}
+		context={'puntaje': puntaje, 'respuestas_seleccionadas': respuestas_seleccionadas, 'categoria': categoria.id}
 		return render(request, 'partidas/mostrarResultado.html', context)
 	else:
 		return render(request, 'partidas/mostrarResultado.html')
