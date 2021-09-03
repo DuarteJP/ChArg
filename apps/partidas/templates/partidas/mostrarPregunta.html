@@ -70,7 +70,7 @@
 			<div class="card-panel">
 			<form action="{% url 'partidas:mostrarResultado' pregunta.id %}" method="POST" name="seleccion">
 				{% csrf_token %}
-				<div class="form-row">
+				<div class="form-row left-align">
 					<div class="form-group col-12">
                 		<div class="input-group">
                 			<span class="input-group-append">

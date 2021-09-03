@@ -15,7 +15,7 @@
 	{% if categorias %}
 		{% for c in categorias %}
 		<div>
-			<a href="{% url 'partidas:mostrarPregunta' c.id %}" class="btn-large waves-effect waves-light">{{c.nombre}}
+			<a href="{% url 'partidas:mostrarPregunta' c.id %}" class="btn-large waves-effect waves-light cat-botones">{{c.nombre}}
 			</a>
 		</div><br>
 		{% endfor %}

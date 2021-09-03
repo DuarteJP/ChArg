@@ -64,3 +64,15 @@ tr {
 .result-label {
     color: #9BDAF2;
 }
+
+.logo-footer{
+    height: 30px;
+}
+
+.texto-footer{
+    font-size: 30px;
+}
+
+.cat-botones{
+    width: 50%;
+}
