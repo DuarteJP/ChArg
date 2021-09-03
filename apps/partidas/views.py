@@ -42,7 +42,7 @@ def seleccionarCategoria(request):
 def mostrarPregunta(request, pk):
 
 	categoria = Categoria.objects.get(pk=pk)
-	partida = Partida.objects.filter(categoria = categoria).last()
+	partida = Partida.objects.filter(categoria = categoria, usuario=request.user).last()
 	if not partida:
 		partida = Partida()
 		partida.usuario = request.user
