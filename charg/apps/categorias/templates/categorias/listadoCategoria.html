@@ -60,8 +60,6 @@
         <tr>
             <th>Categoria</th>
             <th>Descripción</th>
-            <th>Icono</th>
-            <th>Color</th>
             <th>Acción</th>
         </tr>
     </thead>
@@ -71,8 +69,6 @@
                 <tr>
                     <td scope="row">{{p.nombre}}</td>
                     <td scope="row">{{p.descripcion}}</td>
-                    <td scope="row">{{p.icono}}</td>
-                    <td scope="row">{{p.color}}</td>
                     <td>
                         <a href="{% url 'categorias:modificar' p.id %}" type="button" class="btn btn-warning"
                             data-toggle="tooltip" data-placement="right" title="Editar">
@@ -92,8 +88,6 @@
                 <tr>
                     <td scope="row">{{p.nombre}}</td>
                     <td scope="row">{{p.descripcion}}</td>
-                    <td scope="row">{{p.icono}}</td>
-                    <td scope="row">{{p.color}}</td>
                     <td>
                         <a href="{% url 'categorias:modificar' p.id %}" type="button" class="btn btn-warning"
                             data-toggle="tooltip" data-placement="right" title="Editar">
