@@ -44,7 +44,7 @@ ROOT_URLCONF = 'charg.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(os.path.dirname(BASE_DIR),'templates')],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -107,7 +107,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR / "static"),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
+print("\n\n"+STATIC_ROOT+"\n\n")
 LOGIN_URL = "usuarios:login"
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
@@ -126,8 +126,6 @@ ENVIROMENT = os.environ.get("ENVIROMENT","LOCAL")
 
 if ENVIROMENT == "PROD":
     DEBUG = False
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
     import django_heroku
     django_heroku.settings(locals())
 else:
