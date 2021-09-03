@@ -125,10 +125,12 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 ENVIROMENT = os.environ.get("ENVIROMENT","LOCAL")
 
 if ENVIROMENT == "PROD":
+    # Usar conf de heroku
     DEBUG = os.environ.get("DEBUG", False)
     import django_heroku
     django_heroku.settings(locals())
-else:
+elif ENVIROMENT == "LOCAL":
+    # para usar sqlit
     DEBUG = True
 
     ALLOWED_HOSTS = []
@@ -139,3 +141,18 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+else:
+    #para que siga funcionando con sqlserver como estaba antes
+    DEBUG = True
+    ALLOWED_HOSTS = []
+    DATABASES = {
+        'default': {
+            'ENGINE': 'sql_server.pyodbc',
+            'NAME': 'FINAL',
+            'Trusted_Connection':'yes',
+            'HOST':'localhost\\SQLEXPRESS',
+            'OPTIONS':{
+                'driver':'SQL Server Native Client 11.0',
+            }
+        }
+    }    
