@@ -34,36 +34,40 @@ def misPartidas(request, pk):
 @login_required
 def seleccionarCategoria(request):
 	context ={}
-	partida = Partida.objects.create(usuario = request.user)
-	#Se recorren todas las preguntas para asegurarse que ninguna tenga Mostrada=True
-	preguntas = Pregunta.objects.filter(mostrada=True).update(mostrada=False)
-	respuestas = Respuesta.objects.filter(seleccionada=True).update(seleccionada=False)
 	categoria = Categoria.objects.all()
 	context['categorias'] = categoria
 	return render(request, 'partidas/seleccionarCategoria.html', context)
 
 @login_required
 def mostrarPregunta(request, pk):
-	ultima_partida = Partida.objects.last()
-	partida = Partida.objects.filter(id = ultima_partida.id).update(categoria_id = pk) 
-	if ultima_partida.contador <= 5:
-		contador = ultima_partida.contador
-		contador = Partida.objects.filter(id = ultima_partida.id).update(contador = contador + 1)
-		contador = ultima_partida.contador
-		categoria = Categoria.objects.get(id=pk)
+	categoria = Categoria.objects.get(pk=pk)
+	partida = Partida.objects.filter(categoria = categoria).last()
+	if not partida:
+		partida = Partida()
+		partida.usuario = request.user
+		partida.categoria = categoria
+		partida.save()
+	
+	
+	if partida.contador <= 5:
+		contador = partida.contador
+		partida.contador = contador + 1
+		partida.save()
+		contador = partida.contador
 		preguntas = Pregunta.objects.filter(mostrada = False, categoria_id = pk)
-		#preg = list(Pregunta.objects.filter(mostrada=False, categoria_id=pk))
 		rand = random.choice(preguntas)
 		id_preg = rand.id
-		pregunta = Pregunta.objects.filter(id=id_preg).update(mostrada=True)
 		pregunta = Pregunta.objects.get(id=id_preg)
+		pregunta.mostrada=True
+		pregunta.save()
 		respuestas = Respuesta.objects.filter(pregunta_id=id_preg)
 		context={'categoria': categoria, 'pregunta': pregunta, 'respuesta': respuestas}
 		return render(request, 'partidas/mostrarPregunta.html', context)
 	else:
 		contador = True
 		contexto = {'contador': contador}
-		partida = Partida.objects.filter(id = ultima_partida.id).update(finalizada = True)
+		partida.finalizada = True
+		partida.save()
 		return render(request, 'partidas/mostrarPregunta.html', contexto)
 
 @login_required
