@@ -69,10 +69,11 @@ tr {
     height: 30px;
 }
 
-.texto-footer{
-    font-size: 30px;
-}
 
 .cat-botones{
     width: 50%;
+}
+
+.btn-inicio{
+    margin: 20px;
 }
