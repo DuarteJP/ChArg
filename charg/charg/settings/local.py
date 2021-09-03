@@ -4,16 +4,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-DATABASES = {
-    'default': {
+if ENVIROMENT == "LOCAL":
+    DATABASES = {
+        'default': {
 
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'FINAL',
-        'Trusted_Connection':'yes',
-        'HOST':'localhost\\SQLEXPRESS',
-        'OPTIONS':{
-            'driver':'SQL Server Native Client 11.0',
+            'ENGINE': 'sql_server.pyodbc',
+            'NAME': 'FINAL',
+            'Trusted_Connection':'yes',
+            'HOST':'localhost\\SQLEXPRESS',
+            'OPTIONS':{
+                'driver':'SQL Server Native Client 11.0',
 
+            }
         }
     }
-}

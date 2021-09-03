@@ -27,7 +27,7 @@ SECRET_KEY = '#7(^)qnh55*ac)6*+4=)&&v13vv@yemdbbkt!oiwkzkky$^o9f'
 
 
 
-
+ENVIROMENT = os.environ.get("ENVIROMENT","LOCAL")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
